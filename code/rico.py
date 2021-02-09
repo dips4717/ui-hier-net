@@ -959,7 +959,7 @@ class Node(Dict):
         out = np.zeros((1, Hierarchy.NUM_SEMANTICS), dtype=np.float32)
         out[0, self.get_semantic_id()] = 1
         return T.tensor(out, dtype=T.float32).to(self.device)
-
+ 
     """For StructureNet"""
     def get_xywh(self):
         # self.box: [x1, y1, x2, y2], [0-MAX_HEIGHT, 0-MAX_WIDTH]

@@ -25,6 +25,7 @@ from rico import Hierarchy
 from datasets import RicoFlatDataset, RicoHierDataset
 import utils
 import time 
+from moka import *
 
 # Use 1-4 CPU threads to train.
 # Don't use too many CPU threads, which will slow down the training.
@@ -74,6 +75,7 @@ def train(conf):
 
     # save config
     torch.save(conf, os.path.join(conf.model_path, conf.exp_name, 'conf.pth'))
+    print('\n\n Configuration:\n', vars(conf), '\n\n')
 
     # create models
     encoder = models.RecursiveEncoder(conf, variational= not conf.non_variational, probabilistic=not conf.non_probabilistic)
@@ -144,6 +146,11 @@ def train(conf):
 
     # train for every epoch
     for epoch in range(conf.epochs):
+        global train_stats
+        global val_stats
+        train_stats = Statistics()
+        val_stats = Statistics()
+
         if not conf.no_console_log:
             print(f'training run {conf.exp_name}')
             flog.write(f'training run {conf.exp_name}\n')
@@ -317,7 +324,7 @@ def forward(batch, data_features, encoder, decoder, device, conf,
                 f'''{100. * (1+batch_ind+num_batch*epoch) / (num_batch*conf.epochs):>9.1f}%      '''
                 f'''{lr:>5.2E} '''
                 f'''{losses['box'].item():>11.2f} '''
-                f'''{(losses['leaf']+losses['exists']+losses['semantic']).item():>11.2f} '''
+                f'''{losses['leaf'].item():>11.2f} '''
                 f'''{losses['exists'].item():>11.2f} '''
                 f'''{losses['semantic'].item():>11.2f} '''
                 f'''{losses['kldiv'].item():>10.2f} '''

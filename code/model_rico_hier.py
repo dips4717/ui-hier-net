@@ -62,16 +62,21 @@ class BoxEncoder(nn.Module):
 
 class GNNChildEncoder(nn.Module):
 
-    def __init__(self, node_feat_size, hidden_size, node_symmetric_type, \
+    def __init__(self, config, node_feat_size, hidden_size, node_symmetric_type, \
             edge_symmetric_type, num_iterations, edge_type_num):
         super(GNNChildEncoder, self).__init__()
 
+        self.conf = config
         self.node_symmetric_type = node_symmetric_type
         self.edge_symmetric_type = edge_symmetric_type
         self.num_iterations = num_iterations
         self.edge_type_num = edge_type_num
 
-        self.child_op = nn.Linear(node_feat_size + Hierarchy.NUM_SEMANTICS, hidden_size)
+        if self.conf.semantic_representation=='nn_embedding':
+            self.child_op = nn.Linear(node_feat_size + self.conf.hidden_size, hidden_size)
+        else:
+            self.child_op = nn.Linear(node_feat_size + Hierarchy.NUM_SEMANTICS, hidden_size)
+
         self.node_edge_op = torch.nn.ModuleList()
         for i in range(self.num_iterations):
             self.node_edge_op.append(nn.Linear(hidden_size*2 + 8, hidden_size))
@@ -171,6 +176,7 @@ class RecursiveEncoder(nn.Module):
         self.box_encoder = BoxEncoder(feature_size=config.feature_size, box_dim=4)
 
         self.child_encoder = GNNChildEncoder(
+            config=config,
             node_feat_size=config.feature_size,
             hidden_size=config.hidden_size,
             node_symmetric_type=config.node_symmetric_type,
@@ -182,6 +188,12 @@ class RecursiveEncoder(nn.Module):
             self.sample_encoder = Sampler(feature_size=config.feature_size, \
                     hidden_size=config.hidden_size, probabilistic=probabilistic)
 
+        if self.conf.semantic_representation=='nn_embedding':
+            self.sem_embeds = nn.Embedding(Hierarchy.NUM_SEMANTICS, self.conf.hidden_size)  # 2 words in vocab, 5 dimensional embeddings
+            print('\n\n Using nn.embedding for semantic representation\n\n')
+            #lookup_tensor = torch.tensor([word_to_ix["hello"]], dtype=torch.long)
+            #llo_embed = embeds(lookup_tensor)            
+
     def encode_node(self, node):
         if node.is_leaf:
             #return self.box_encoder(node.get_box_quat().view(1, -1))
@@ -190,7 +202,14 @@ class RecursiveEncoder(nn.Module):
             # get features of all children
             child_feats = []
             for child in node.children:
-                cur_child_feat = torch.cat([self.encode_node(child), child.get_semantic_one_hot()], dim=1)
+                if self.conf.semantic_representation == 'nn_embedding':
+                    sem_id =  child.get_semantic_id()
+                    sem_id_tensor = torch.tensor([sem_id], dtype=torch.long).to(child.device)
+                    child_sem_embed = self.sem_embeds(sem_id_tensor)
+                    cur_child_feat = torch.cat([self.encode_node(child), child_sem_embed], dim=1)
+                else:
+                    cur_child_feat = torch.cat([self.encode_node(child), child.get_semantic_one_hot()], dim=1)
+
                 child_feats.append(cur_child_feat.unsqueeze(dim=1))
             child_feats = torch.cat(child_feats, dim=1)
 

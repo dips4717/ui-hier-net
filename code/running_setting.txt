@@ -2,3 +2,15 @@ nohup python train_rico_hier.py --exp_name 'rico_hier_exp_1' > rico_hier_exp_1.o
 
 
 nohup python train_rico_hier.py --exp_name 'rico_hier_exp_AE' --non_probabilistic  > rico_hier_exp_AE.out &
+
+nohup python train_rico_hier.py --exp_name 'rico_hier_exp_AE_sem_wt_1' --non_probabilistic --loss_weight_semantic 1.0 > rico_hier_exp_AE_sem_wt_1.out &
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_exp_AE_sem_wt_1_nnemb' \
+--non_probabilistic \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+> rico_hier_exp_AE_sem_wt_1_nnemb.out &
+
+
+--semantic_representation

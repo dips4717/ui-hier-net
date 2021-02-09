@@ -22,6 +22,7 @@ def add_data_args(parser):
     parser.add_argument('--train_dataset', type=str, default='train.txt', help='file name for the list of object names for training')
     parser.add_argument('--edge_types', type=str, nargs='*', default=['ADJ', 'ROT_SYM', 'TRANS_SYM', 'REF_SYM'], help='list of possible edge types')
     parser.add_argument('--extract_hier', action='store_true', default=False, help='whether to extract new hierarchy on top of rico')
+    parser.add_argument('--semantic_representation', type=str, default='one_hot', choices = ['one_hot', 'nn_embedding'])
 
     return parser
 
@@ -53,7 +54,7 @@ def add_train_vae_args(parser):
     parser.add_argument('--lr', type=float, default=.001)
     parser.add_argument('--weight_decay', type=float, default=1e-5)
     parser.add_argument('--lr_decay_by', type=float, default=0.1, help='StepLR gamma')
-    parser.add_argument('--lr_decay_every', type=float, default=15,  help='StepLR decay LR every X epoch (/batches)')
+    parser.add_argument('--lr_decay_every', type=float, default=15,  help='StepLR decay LR every X epochs (/batches)')
     parser.add_argument('--lr_decay_factor', type=float, default=0.1, help='ReduceLROnPlateau factor')
     parser.add_argument('--lr_decay_patience', type=int, default=10, help='ReduceLROnPlateau reduce LR after X *epochs* of valid loss not decreasing')
     parser.add_argument('--non_variational', action='store_true', default=False, help='make the variational autoencoder non-variational')
