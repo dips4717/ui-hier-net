@@ -52,8 +52,10 @@ def add_train_vae_args(parser):
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--lr', type=float, default=.001)
     parser.add_argument('--weight_decay', type=float, default=1e-5)
-    parser.add_argument('--lr_decay_by', type=float, default=0.1)
-    parser.add_argument('--lr_decay_every', type=float, default=15)
+    parser.add_argument('--lr_decay_by', type=float, default=0.1, help='StepLR gamma')
+    parser.add_argument('--lr_decay_every', type=float, default=15,  help='StepLR decay LR every X epoch (/batches)')
+    parser.add_argument('--lr_decay_factor', type=float, default=0.1, help='ReduceLROnPlateau factor')
+    parser.add_argument('--lr_decay_patience', type=int, default=10, help='ReduceLROnPlateau reduce LR after X *epochs* of valid loss not decreasing')
     parser.add_argument('--non_variational', action='store_true', default=False, help='make the variational autoencoder non-variational')
     parser.add_argument('--non_probabilistic', action='store_true', default=False, help='make the variational autoencoder non-variational/non-probabilistic')
 
