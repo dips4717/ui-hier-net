@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>rico_hier_exp_3</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <style>
+                table { border-collapse: collapse; border: 1px solid #ccc; margin: auto !important; table-layout: fixed; margin-bottom: 10px; }
+                th, span { font-family: monospace; }
+                td { word-wrap: break-word; padding: 5px; }
+                caption { text-align: center; font-weight: 600; }
+                h1, h2, h3 { text-align: center; font-weight: normal; }
+                html, body { font-size: 18px; }
+                
+                html, body { background-color: #111; color: #eee; }
+                </style>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>id</th>
+        <th>pred</th>
+        <th>pred_layout</th>
+        <th>gt</th>
+        <th>gt_layout</th>
+        <th>IoU</th>
+        <th>edit_distance</th>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>58735<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ? [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000000.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 [Merged-vca]    <br>  |  ├2 Toolbar    <br>  |  |  ├3 Text [LEAF] <br>  |  |  ├4 Icon [LEAF] <br>  |  |  ├5 Icon [LEAF] <br>  |  ├6 Multi-Tab    <br>  |  |  ├7 Text Button [LEAF] <br>  |  |  ├8 Text Button [LEAF] <br>  ├9 [Merged-hca]    <br>  |  ├10 [Merged-vca]    <br>  |  |  ├11 List Item    <br>  |  |  |  ├12 Image [LEAF] <br>  |  |  |  ├13 Text [LEAF] <br>  |  |  ├14 List Item    <br>  |  |  |  ├15 Image [LEAF] <br>  |  |  |  ├16 Text [LEAF] <br>  |  |  ├17 List Item    <br>  |  |  |  ├18 Image [LEAF] <br>  |  ├19 [Merged-vca]    <br>  |  |  ├20 List Item    <br>  |  |  |  ├21 Image [LEAF] <br>  |  |  |  ├22 Text [LEAF] <br>  |  |  ├23 List Item    <br>  |  |  |  ├24 Image [LEAF] <br>  |  |  |  ├25 Text [LEAF] <br>  |  |  ├26 List Item    <br>  |  |  |  ├27 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000001.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>70945<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000002.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├2 [Merged-vca]    <br>  |  ├3 Toolbar    <br>  |  |  ├4 Icon [LEAF] <br>  |  ├5 Image [LEAF] <br>  |  ├6 [Merged-hca]    <br>  |  |  ├7 Text Button [LEAF] <br>  |  |  ├8 Text Button [LEAF] <br>  ├1 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000003.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>-0.0<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>53960<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ? [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000004.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Advertisement [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000005.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>31683<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000006.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 [Merged-vca]    <br>  |  ├2 Toolbar    <br>  |  |  ├3 Text [LEAF] <br>  |  |  ├4 Icon [LEAF] <br>  |  ├5 Text [LEAF] <br>  |  ├6 Text [LEAF] <br>  |  ├7 Text [LEAF] <br>  ├8 [Merged-vca]    <br>  |  ├9 Text [LEAF] <br>  |  ├10 Text [LEAF] <br>  ├11 [Merged-vca]    <br>  |  ├12 Text [LEAF] <br>  |  ├13 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000007.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>-0.0<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>66724<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Advertisement [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000008.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 [Merged-hca]    <br>  |  |  ├3 Icon [LEAF] <br>  |  |  ├4 Image [LEAF] <br>  |  |  ├5 Text [LEAF] <br>  |  ├6 [Merged-hca]    <br>  |  |  ├7 Text Button [LEAF] <br>  |  |  ├8 Text Button [LEAF] <br>  |  |  ├9 Text Button [LEAF] <br>  |  |  ├10 Text Button [LEAF] <br>  ├11 List Item    <br>  |  ├12 Image [LEAF] <br>  |  ├13 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000009.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>-0.0<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>55020<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000010.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├3 Advertisement    <br>  |  ├4 Web View    <br>  |  |  ├5 Web View [LEAF] <br>  ├1 Input [LEAF] <br>  ├2 Image [LEAF] <br>  ├6 [Merged-hca]    <br>  |  ├7 Image [LEAF] <br>  |  ├8 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000011.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.052742760682209185<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>47048<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000012.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Background Image [LEAF] <br>  ├3 [Merged-vca]    <br>  |  ├4 Text Button [LEAF] <br>  |  ├5 Text Button [LEAF] <br>  |  ├6 Text Button [LEAF] <br>  ├2 Image [LEAF] <br>  ├7 [Merged-hca]    <br>  |  ├8 Image [LEAF] <br>  |  ├9 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000013.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.07075617901244341<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>33925<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000014.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 [Merged-vca]    <br>  |  ├2 Text Button [LEAF] <br>  |  ├3 Text Button [LEAF] <br>  |  ├4 Text Button [LEAF] <br>  |  ├5 [Merged-hca]    <br>  |  |  ├6 Text Button [LEAF] <br>  |  |  ├7 Text Button [LEAF] <br>  |  |  ├8 Text Button [LEAF] <br>  |  |  ├9 Text Button [LEAF] <br>  ├10 [Merged-vca]    <br>  |  ├11 Text Button [LEAF] <br>  |  ├12 Text Button [LEAF] <br>  |  ├13 Text Button [LEAF] <br>  |  ├14 Text Button [LEAF] <br>  |  ├15 Text Button [LEAF] <br>  |  ├16 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000015.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.08195974935604085<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>10752<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000016.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Drawer    <br>  |  ├2 Text Button [LEAF] <br>  |  ├3 [Merged-hca]    <br>  |  |  ├4 Icon [LEAF] <br>  |  |  ├5 Text [LEAF] <br>  |  ├6 [Merged-hca]    <br>  |  |  ├7 Icon [LEAF] <br>  |  |  ├8 Text [LEAF] <br>  |  |  ├9 Text [LEAF] <br>  |  ├10 [Merged-hca]    <br>  |  |  ├11 Icon [LEAF] <br>  |  |  ├12 Text [LEAF] <br>  |  ├13 [Merged-vca]    <br>  |  |  ├14 Text Button [LEAF] <br>  |  |  ├15 [Merged-hca]    <br>  |  |  |  ├16 Icon [LEAF] <br>  |  |  |  ├17 Text [LEAF] <br>  |  |  |  ├18 Text [LEAF] <br>  ├19 [Merged-vca]    <br>  |  ├20 Toolbar    <br>  |  |  ├21 Text [LEAF] <br>  |  |  ├22 Icon [LEAF] <br>  |  ├23 List Item    <br>  |  |  ├24 Text Button [LEAF] <br>  |  |  ├25 Image [LEAF] <br>  |  |  ├26 [Merged-vca]    <br>  |  |  |  ├27 Text [LEAF] <br>  |  |  |  ├28 Text [LEAF] <br>  |  |  |  ├29 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000017.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.08430717301730363<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>55104<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 Text [LEAF] <br>  ├10 [Merged-vca] [LEAF] <br>  ├9 Text Button [LEAF] <br>  ├7 Text [LEAF] <br>  ├1 Text [LEAF] <br>  ├8 Text [LEAF] <br>  ├3 Text [LEAF] <br>  ├2 Text [LEAF] <br>  ├5 Text [LEAF] <br>  ├6 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000018.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Text [LEAF] <br>  ├6 Image [LEAF] <br>  ├2 Text Button [LEAF] <br>  ├3 Text Button [LEAF] <br>  ├4 Text Button [LEAF] <br>  ├5 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000019.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.09016991725739747<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>10<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>49986<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 Toolbar    <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Icon [LEAF] <br>  |  ├7 Icon [LEAF] <br>  ├2 [Merged-vca]    <br>  |  ├3 Image [LEAF] <br>  ├1 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000020.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├6 [Merged-hca]    <br>  |  ├7 Icon [LEAF] <br>  |  ├8 Icon [LEAF] <br>  |  ├9 Icon [LEAF] <br>  ├10 [Merged-hca]    <br>  |  ├11 Image [LEAF] <br>  |  ├12 Icon [LEAF] <br>  |  ├13 Icon [LEAF] <br>  ├3 [Merged-vca]    <br>  |  ├4 Text [LEAF] <br>  |  ├5 Image [LEAF] <br>  ├2 Icon [LEAF] <br>  ├1 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000021.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.10532708152484178<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>5<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>35826<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 Toolbar    <br>  |  ├5 Icon [LEAF] <br>  ├2 [Merged-vca]    <br>  |  ├3 Web View [LEAF] <br>  ├1 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000022.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├2 [Merged-vca]    <br>  |  ├3 Text Button [LEAF] <br>  |  ├4 Text Button [LEAF] <br>  |  ├5 Text Button [LEAF] <br>  |  ├6 Text Button [LEAF] <br>  |  ├7 Text Button [LEAF] <br>  |  ├8 Text Button [LEAF] <br>  |  ├9 Text Button [LEAF] <br>  ├1 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000023.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.15099397872850676<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>10478<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├3 [Merged-vca]    <br>  |  ├4 Background Image [LEAF] <br>  ├6 Text Button [LEAF] <br>  ├1 [Merged-vca] [LEAF] <br>  ├5 Text [LEAF] <br>  ├2 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000024.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├7 [Merged-vca]    <br>  |  ├8 Toolbar [LEAF] <br>  |  ├9 Image [LEAF] <br>  |  ├10 Text [LEAF] <br>  ├1 Image [LEAF] <br>  ├2 Text [LEAF] <br>  ├3 Input [LEAF] <br>  ├4 [Merged-hca]    <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000025.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.19568468938800399<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>69321<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Text    <br>  |  ├2 List Item    <br>  |  |  ├3 [Merged-vca] [LEAF] <br>  |  ├4 List Item    <br>  |  |  ├5 [Merged-vca]    <br>  |  |  |  ├6 Text [LEAF] <br>  |  |  |  ├7 Image [LEAF] <br>  |  |  ├8 [Merged-vca]    <br>  |  |  |  ├9 Text [LEAF] <br>  |  |  |  ├10 Image [LEAF] <br>  |  |  ├11 [Merged-vca]    <br>  |  |  |  ├12 Text [LEAF] <br>  |  |  ├13 [Merged-vca]    <br>  |  |  |  ├14 Text [LEAF] <br>  |  |  |  ├15 Icon [LEAF] <br>  ├16 Text    <br>  |  ├17 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000026.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Drawer    <br>  |  ├2 Text [LEAF] <br>  |  ├3 List Item    <br>  |  |  ├4 Icon [LEAF] <br>  |  |  ├5 Text [LEAF] <br>  ├6 [Merged-hca]    <br>  |  ├7 Icon [LEAF] <br>  |  ├8 Text [LEAF] <br>  ├9 [Merged-hca]    <br>  |  ├10 Text Button [LEAF] <br>  |  ├11 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000027.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.20414946254687266<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>51944<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├10 [Merged-vca]    <br>  |  ├11 [Merged-hca] [LEAF] <br>  |  ├12 Toolbar    <br>  |  |  ├13 Icon [LEAF] <br>  ├4 Text [LEAF] <br>  ├9 Text Button [LEAF] <br>  ├7 Text [LEAF] <br>  ├8 Text [LEAF] <br>  ├1 Text [LEAF] <br>  ├2 Text [LEAF] <br>  ├3 Text [LEAF] <br>  ├5 Text [LEAF] <br>  ├6 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000028.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├10 [Merged-vca]    <br>  |  ├11 Toolbar    <br>  |  |  ├12 Image [LEAF] <br>  |  |  ├13 Icon [LEAF] <br>  |  ├14 Text Button [LEAF] <br>  ├15 [Merged-vca]    <br>  |  ├16 Text [LEAF] <br>  |  ├17 [Merged-hca]    <br>  |  |  ├18 Input [LEAF] <br>  |  |  ├19 Input [LEAF] <br>  |  |  ├20 Input [LEAF] <br>  |  |  ├21 Text [LEAF] <br>  |  |  ├22 Text [LEAF] <br>  |  |  ├23 Text [LEAF] <br>  |  |  ├24 Text [LEAF] <br>  ├2 Text [LEAF] <br>  ├3 Text [LEAF] <br>  ├1 Text Button [LEAF] <br>  ├4 [Merged-hca]    <br>  |  ├5 Text [LEAF] <br>  |  ├6 Icon [LEAF] <br>  ├7 [Merged-hca]    <br>  |  ├8 Text [LEAF] <br>  |  ├9 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000029.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.2047515453961062<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>6<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>49671<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Modal    <br>  |  ├2 [Merged-vca]    <br>  |  |  ├3 Text [LEAF] <br>  |  ├4 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000030.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Modal    <br>  |  ├2 List Item    <br>  |  |  ├3 Image [LEAF] <br>  |  |  ├4 Text [LEAF] <br>  |  ├5 List Item    <br>  |  |  ├6 Image [LEAF] <br>  |  |  ├7 Text [LEAF] <br>  |  ├8 List Item    <br>  |  |  ├9 Icon [LEAF] <br>  |  |  ├10 Text [LEAF] <br>  |  ├11 List Item    <br>  |  |  ├12 Image [LEAF] <br>  |  |  ├13 Text [LEAF] <br>  |  ├14 List Item    <br>  |  |  ├15 Image [LEAF] <br>  |  |  ├16 Text [LEAF] <br>  |  ├17 List Item    <br>  |  |  ├18 Image [LEAF] <br>  |  |  ├19 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000031.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.2194956188921742<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>37855<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 Toolbar    <br>  |  ├3 Icon [LEAF] <br>  ├1 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000032.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├4 [Merged-hca]    <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Icon [LEAF] <br>  ├7 [Merged-vca]    <br>  |  ├8 Text [LEAF] <br>  |  ├9 Text [LEAF] <br>  ├10 [Merged-vca]    <br>  |  ├11 Text Button [LEAF] <br>  |  ├12 Text Button [LEAF] <br>  |  ├13 Text Button [LEAF] <br>  |  ├14 Text Button [LEAF] <br>  ├1 [Merged-hca]    <br>  |  ├2 Text Button [LEAF] <br>  |  ├3 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000033.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.22526935575798<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>28583<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├8 Toolbar    <br>  |  ├9 Icon [LEAF] <br>  ├7 [Merged-vca] [LEAF] <br>  ├3 Text [LEAF] <br>  ├1 Text [LEAF] <br>  ├6 [Merged-vca] [LEAF] <br>  ├5 [Merged-vca] [LEAF] <br>  ├2 Text [LEAF] <br>  ├4 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000034.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Advertisement    <br>  |  ├2 Web View    <br>  |  |  ├3 Web View [LEAF] <br>  ├12 [Merged-hca]    <br>  |  ├13 Image [LEAF] <br>  |  ├14 Text [LEAF] <br>  ├27 [Merged-vca]    <br>  |  ├28 Text [LEAF] <br>  |  ├29 [Merged-hca]    <br>  |  |  ├30 Text Button [LEAF] <br>  |  |  ├31 Text Button [LEAF] <br>  ├4 Text Button [LEAF] <br>  ├24 [Merged-vca]    <br>  |  ├25 Text [LEAF] <br>  |  ├26 Slider [LEAF] <br>  ├5 [Merged-hca]    <br>  |  ├6 Icon [LEAF] <br>  |  ├7 Icon [LEAF] <br>  |  ├8 Image [LEAF] <br>  |  ├9 Text [LEAF] <br>  |  ├10 Icon [LEAF] <br>  |  ├11 Text [LEAF] <br>  ├15 [Merged-hca]    <br>  |  ├16 Text [LEAF] <br>  |  ├17 Text Button [LEAF] <br>  |  ├18 Text Button [LEAF] <br>  |  ├19 Icon [LEAF] <br>  |  ├20 Text [LEAF] <br>  ├21 [Merged-vca]    <br>  |  ├22 Icon [LEAF] <br>  |  ├23 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000035.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.2292276589670996<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>6<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>43951<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├6 Toolbar    <br>  |  ├7 Icon [LEAF] <br>  |  ├8 Icon [LEAF] <br>  ├1 [Merged-vca]    <br>  |  ├2 Background Image [LEAF] <br>  ├3 [Merged-hca]    <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000036.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├9 [Merged-hca]    <br>  |  ├10 Icon [LEAF] <br>  |  ├11 Icon [LEAF] <br>  |  ├12 Text [LEAF] <br>  |  ├13 Text Button [LEAF] <br>  ├1 Input [LEAF] <br>  ├14 [Merged-hca]    <br>  |  ├15 Text [LEAF] <br>  |  ├16 Text [LEAF] <br>  ├2 [Merged-vca]    <br>  |  ├3 Image [LEAF] <br>  |  ├4 Text [LEAF] <br>  ├5 [Merged-vca]    <br>  |  ├6 Text [LEAF] <br>  |  ├7 Text Button [LEAF] <br>  |  ├8 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000037.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.2443324050810727<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>19257<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├3 [Merged-vca] [LEAF] <br>  ├1 [Merged-vca] [LEAF] <br>  ├2 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000038.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├5 [Merged-vca]    <br>  |  ├6 Image [LEAF] <br>  |  ├7 Advertisement [LEAF] <br>  ├8 [Merged-vca]    <br>  |  ├9 Text [LEAF] <br>  |  ├10 Text [LEAF] <br>  |  ├11 Image [LEAF] <br>  ├2 [Merged-hca]    <br>  |  ├3 Image [LEAF] <br>  |  ├4 Image [LEAF] <br>  ├1 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000039.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.24543623463994005<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>5101<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 [Merged-vca]    <br>  |  |  ├3 Image [LEAF] <br>  |  ├4 Toolbar    <br>  |  |  ├5 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000040.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000041.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.24607003114562945<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>18566<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 [Merged-vca]    <br>  |  ├5 [Merged-hca] [LEAF] <br>  |  ├6 Toolbar    <br>  |  |  ├7 Icon [LEAF] <br>  ├3 [Merged-vca] [LEAF] <br>  ├1 [Merged-hca] [LEAF] <br>  ├2 [Merged-vca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000042.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├7 [Merged-vca]    <br>  |  ├8 Image [LEAF] <br>  |  ├9 Text Button [LEAF] <br>  |  ├10 Advertisement    <br>  |  |  ├11 Web View    <br>  |  |  |  ├12 Web View [LEAF] <br>  ├13 [Merged-vca]    <br>  |  ├14 Text Button [LEAF] <br>  |  ├15 [Merged-hca]    <br>  |  |  ├16 Image [LEAF] <br>  |  |  ├17 Text [LEAF] <br>  |  |  ├18 Text [LEAF] <br>  ├4 [Merged-hca]    <br>  |  ├5 Text [LEAF] <br>  |  ├6 Icon [LEAF] <br>  ├1 Text Button [LEAF] <br>  ├2 Text [LEAF] <br>  ├3 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000043.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.26659754271788866<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>57282<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 Text [LEAF] <br>  ├10 [Merged-vca] [LEAF] <br>  ├9 Text Button [LEAF] <br>  ├1 Text [LEAF] <br>  ├7 Text [LEAF] <br>  ├8 Text [LEAF] <br>  ├2 Text [LEAF] <br>  ├3 Text [LEAF] <br>  ├5 Text [LEAF] <br>  ├6 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000044.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├16 [Merged-vca]    <br>  |  ├17 Toolbar    <br>  |  |  ├18 Text [LEAF] <br>  |  |  ├19 Icon [LEAF] <br>  |  ├20 Input [LEAF] <br>  ├21 [Merged-vca]    <br>  |  ├22 Input [LEAF] <br>  |  ├23 [Merged-hca]    <br>  |  |  ├24 List Item    <br>  |  |  |  ├25 Image [LEAF] <br>  |  |  |  ├26 Text [LEAF] <br>  |  |  |  ├27 Text [LEAF] <br>  |  |  ├28 List Item    <br>  |  |  |  ├29 Image [LEAF] <br>  |  |  |  ├30 Text [LEAF] <br>  |  |  |  ├31 Text [LEAF] <br>  ├1 Text [LEAF] <br>  ├2 Text [LEAF] <br>  ├3 [Merged-hca]    <br>  |  ├4 Text Button [LEAF] <br>  |  ├5 Text Button [LEAF] <br>  ├6 [Merged-hca]    <br>  |  ├7 Icon [LEAF] <br>  |  ├8 Icon [LEAF] <br>  |  ├9 Icon [LEAF] <br>  |  ├10 Icon [LEAF] <br>  |  ├11 Icon [LEAF] <br>  ├12 [Merged-hca]    <br>  |  ├13 Text [LEAF] <br>  |  ├14 Text [LEAF] <br>  |  ├15 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000045.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.2673251873203816<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>7<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>30904<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000046.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├2 [Merged-vca]    <br>  |  ├3 Toolbar    <br>  |  |  ├4 Icon [LEAF] <br>  |  |  ├5 Image [LEAF] <br>  |  |  ├6 Text [LEAF] <br>  |  ├7 Text [LEAF] <br>  |  ├8 Image [LEAF] <br>  ├9 [Merged-vca]    <br>  |  ├10 Image [LEAF] <br>  |  ├11 Text [LEAF] <br>  |  ├12 Image [LEAF] <br>  |  ├13 [Merged-hca]    <br>  |  |  ├14 Text Button [LEAF] <br>  |  |  ├15 Text Button [LEAF] <br>  ├1 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000047.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.2684948318391162<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>36516<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├6 [Merged-vca]    <br>  |  ├7 Image [LEAF] <br>  ├10 [Merged-vca]    <br>  |  ├11 Text [LEAF] <br>  |  ├12 Toolbar    <br>  |  |  ├13 Icon [LEAF] <br>  ├9 Text Button [LEAF] <br>  ├8 Text [LEAF] <br>  ├2 Text [LEAF] <br>  ├1 Text [LEAF] <br>  ├3 Text [LEAF] <br>  ├4 Text Button [LEAF] <br>  ├5 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000048.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Background Image [LEAF] <br>  ├2 Icon [LEAF] <br>  ├4 Text [LEAF] <br>  ├6 [Merged-hca]    <br>  |  ├7 Text [LEAF] <br>  |  ├8 Icon [LEAF] <br>  ├9 [Merged-vca]    <br>  |  ├10 Text Button [LEAF] <br>  |  ├11 Text Button [LEAF] <br>  ├3 Image [LEAF] <br>  ├5 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000049.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.2694742539252668<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>8<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>18408<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├10 [Merged-vca]    <br>  |  ├11 Text [LEAF] <br>  |  ├12 Toolbar    <br>  |  |  ├13 Icon [LEAF] <br>  ├4 Text [LEAF] <br>  ├9 Text Button [LEAF] <br>  ├8 Text [LEAF] <br>  ├7 Text [LEAF] <br>  ├1 Text [LEAF] <br>  ├2 Text [LEAF] <br>  ├3 Text [LEAF] <br>  ├5 Text [LEAF] <br>  ├6 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000050.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├4 [Merged-hca]    <br>  |  ├5 Text [LEAF] <br>  |  ├6 Text Button [LEAF] <br>  ├2 Text [LEAF] <br>  ├7 [Merged-hca]    <br>  |  ├8 Text Button [LEAF] <br>  |  ├9 Text Button [LEAF] <br>  ├3 Text [LEAF] <br>  ├10 [Merged-vca]    <br>  |  ├11 [Merged-hca]    <br>  |  |  ├12 Text Button [LEAF] <br>  |  |  ├13 Text Button [LEAF] <br>  |  ├14 [Merged-hca]    <br>  |  |  ├15 Text Button [LEAF] <br>  |  |  ├16 Text Button [LEAF] <br>  ├1 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000051.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.2913231197878719<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>8<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>22991<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 Web View    <br>  |  |  ├3 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000052.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├4 [Merged-vca]    <br>  |  ├5 Toolbar    <br>  |  |  ├6 Text Button [LEAF] <br>  |  |  ├7 Image [LEAF] <br>  |  ├8 [Merged-hca]    <br>  |  |  ├9 Icon [LEAF] <br>  |  |  ├10 Icon [LEAF] <br>  |  |  ├11 Icon [LEAF] <br>  |  |  ├12 Image [LEAF] <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  ├3 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000053.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.29440029843756726<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>56738<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 [Merged-vca]    <br>  |  ├3 Background Image [LEAF] <br>  ├4 [Merged-hca]    <br>  |  ├5 Icon [LEAF] <br>  ├1 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000054.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Background Image [LEAF] <br>  ├7 [Merged-hca]    <br>  |  ├8 Text Button [LEAF] <br>  |  ├9 Text Button [LEAF] <br>  |  ├10 Text Button [LEAF] <br>  |  ├11 Text Button [LEAF] <br>  ├4 [Merged-hca]    <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Image [LEAF] <br>  ├2 Text Button [LEAF] <br>  ├3 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000055.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.31293055534238323<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>5<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>18844<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├5 [Merged-vca]    <br>  |  ├6 [Merged-hca] [LEAF] <br>  |  ├7 Toolbar    <br>  |  |  ├8 Icon [LEAF] <br>  ├4 [Merged-vca] [LEAF] <br>  ├1 [Merged-vca] [LEAF] <br>  ├3 Text Button [LEAF] <br>  ├2 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000056.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├14 [Merged-vca]    <br>  |  ├15 [Merged-hca]    <br>  |  |  ├16 Text [LEAF] <br>  |  |  ├17 Text [LEAF] <br>  |  |  ├18 Slider [LEAF] <br>  |  ├19 [Merged-hca]    <br>  |  |  ├20 Text Button [LEAF] <br>  |  |  ├21 Text Button [LEAF] <br>  |  ├22 [Merged-hca]    <br>  |  |  ├23 Image [LEAF] <br>  |  |  ├24 Image [LEAF] <br>  |  |  ├25 Image [LEAF] <br>  |  ├26 [Merged-hca]    <br>  |  |  ├27 Text [LEAF] <br>  |  |  ├28 Text [LEAF] <br>  |  |  ├29 Slider [LEAF] <br>  ├1 Advertisement    <br>  |  ├2 Web View    <br>  |  |  ├3 Web View [LEAF] <br>  ├8 [Merged-vca]    <br>  |  ├9 Icon [LEAF] <br>  |  ├10 [Merged-hca]    <br>  |  |  ├11 Image [LEAF] <br>  |  |  ├12 Image [LEAF] <br>  |  |  ├13 Icon [LEAF] <br>  ├30 [Merged-vca]    <br>  |  ├31 [Merged-hca]    <br>  |  |  ├32 Image [LEAF] <br>  |  |  ├33 Image [LEAF] <br>  |  |  ├34 Icon [LEAF] <br>  |  ├35 [Merged-hca]    <br>  |  |  ├36 Image [LEAF] <br>  |  |  ├37 Image [LEAF] <br>  ├6 Image [LEAF] <br>  ├7 Icon [LEAF] <br>  ├5 Image [LEAF] <br>  ├4 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000057.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.3163251258770485<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>6<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>47820<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├6 Toolbar    <br>  |  ├7 Icon [LEAF] <br>  ├5 [Merged-vca] [LEAF] <br>  ├1 [Merged-vca] [LEAF] <br>  ├3 [Merged-vca] [LEAF] <br>  ├4 [Merged-vca] [LEAF] <br>  ├2 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000058.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Icon [LEAF] <br>  ├4 On/Off Switch    <br>  |  ├5 Icon [LEAF] <br>  ├10 [Merged-vca]    <br>  |  ├11 Text Button [LEAF] <br>  |  ├12 Text Button [LEAF] <br>  |  ├13 Text Button [LEAF] <br>  ├7 [Merged-vca]    <br>  |  ├8 Image [LEAF] <br>  |  ├9 Text [LEAF] <br>  ├6 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000059.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.31985103987606023<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>53141<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├8 Toolbar    <br>  |  ├9 Icon [LEAF] <br>  |  ├10 Icon [LEAF] <br>  ├2 [Merged-vca]    <br>  |  ├3 [Merged-hca] [LEAF] <br>  |  ├4 [Merged-hca] [LEAF] <br>  |  ├5 List Item [LEAF] <br>  |  ├6 [Merged-hca] [LEAF] <br>  |  ├7 [Merged-hca] [LEAF] <br>  ├1 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000060.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Icon [LEAF] <br>  ├6 [Merged-vca]    <br>  |  ├7 Text [LEAF] <br>  |  ├8 Advertisement    <br>  |  |  ├9 Web View    <br>  |  |  |  ├10 Web View [LEAF] <br>  |  ├11 [Merged-hca]    <br>  |  |  ├12 Text Button [LEAF] <br>  |  |  ├13 Text Button [LEAF] <br>  |  ├14 [Merged-hca]    <br>  |  |  ├15 Text Button [LEAF] <br>  |  |  ├16 Text Button [LEAF] <br>  ├4 Text [LEAF] <br>  ├5 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000061.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.33112894529056225<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>29672<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├6 [Merged-vca]    <br>  |  ├7 [Merged-hca] [LEAF] <br>  ├5 [Merged-vca] [LEAF] <br>  ├3 [Merged-vca] [LEAF] <br>  ├1 [Merged-vca] [LEAF] <br>  ├4 [Merged-vca] [LEAF] <br>  ├2 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000062.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├8 [Merged-hca]    <br>  |  ├9 Image [LEAF] <br>  |  ├10 Image [LEAF] <br>  ├5 [Merged-vca]    <br>  |  ├6 Input [LEAF] <br>  |  ├7 Input [LEAF] <br>  ├1 Text Button [LEAF] <br>  ├2 Text Button [LEAF] <br>  ├3 Text Button [LEAF] <br>  ├4 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000063.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.33467988864691106<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>6435<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├8 Toolbar [LEAF] <br>  ├6 [Merged-vca]    <br>  |  ├7 Web View [LEAF] <br>  ├1 [Merged-vca]    <br>  |  ├2 Text [LEAF] <br>  ├3 [Merged-vca]    <br>  |  ├4 Text [LEAF] <br>  |  ├5 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000064.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 [Merged-hca]    <br>  |  |  ├3 Icon [LEAF] <br>  |  |  ├4 Text [LEAF] <br>  |  ├5 [Merged-hca]    <br>  |  |  ├6 Text Button [LEAF] <br>  |  |  ├7 Text Button [LEAF] <br>  |  |  ├8 Text Button [LEAF] <br>  ├9 Text [LEAF] <br>  ├13 [Merged-vca]    <br>  |  ├14 Text [LEAF] <br>  |  ├15 Input [LEAF] <br>  |  ├16 [Merged-hca]    <br>  |  |  ├17 Text [LEAF] <br>  |  |  ├18 Text [LEAF] <br>  |  ├19 [Merged-hca]    <br>  |  |  ├20 Input [LEAF] <br>  |  |  ├21 Icon [LEAF] <br>  |  |  ├22 Input [LEAF] <br>  |  |  ├23 Icon [LEAF] <br>  ├10 [Merged-hca]    <br>  |  ├11 Text Button [LEAF] <br>  |  ├12 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000065.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.34278326871876785<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>50777<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├5 Toolbar [LEAF] <br>  ├2 List Item    <br>  |  ├3 Image [LEAF] <br>  ├4 Advertisement [LEAF] <br>  ├1 List Item [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000066.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 [Merged-hca]    <br>  |  ├2 Card    <br>  |  |  ├3 Image [LEAF] <br>  |  ├4 Card    <br>  |  |  ├5 Image [LEAF] <br>  ├6 [Merged-hca]    <br>  |  ├7 Card    <br>  |  |  ├8 Image [LEAF] <br>  |  ├9 Card    <br>  |  |  ├10 Image [LEAF] <br>  ├11 [Merged-hca]    <br>  |  ├12 Card    <br>  |  |  ├13 Image [LEAF] <br>  |  ├14 Card    <br>  |  |  ├15 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000067.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.3429057381407996<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>53442<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├8 Toolbar    <br>  |  ├9 Icon [LEAF] <br>  |  ├10 Icon [LEAF] <br>  ├3 [Merged-vca]    <br>  |  ├4 Image [LEAF] <br>  ├5 [Merged-hca]    <br>  |  ├6 Icon [LEAF] <br>  |  ├7 Icon [LEAF] <br>  ├1 [Merged-hca] [LEAF] <br>  ├2 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000068.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├6 Web View [LEAF] <br>  ├14 [Merged-vca]    <br>  |  ├15 Image    <br>  |  |  ├16 Image [LEAF] <br>  |  |  ├17 Image [LEAF] <br>  |  ├18 Text Button [LEAF] <br>  |  ├19 Text Button [LEAF] <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  ├8 Multi-Tab    <br>  |  ├9 Icon [LEAF] <br>  |  ├10 Icon [LEAF] <br>  |  ├11 Image [LEAF] <br>  |  ├12 Icon [LEAF] <br>  |  ├13 Icon [LEAF] <br>  ├7 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000069.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.3559850101403227<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>48081<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 List Item    <br>  |  |  ├3 Image [LEAF] <br>  |  ├4 Toolbar    <br>  |  |  ├5 Icon [LEAF] <br>  |  |  ├6 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000070.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├2 [Merged-vca]    <br>  |  ├3 Toolbar    <br>  |  |  ├4 Text [LEAF] <br>  |  |  ├5 Icon [LEAF] <br>  |  ├6 Multi-Tab    <br>  |  |  ├7 Text [LEAF] <br>  |  |  ├8 Text [LEAF] <br>  |  |  ├9 Text [LEAF] <br>  |  |  ├10 Text [LEAF] <br>  |  |  ├11 Text [LEAF] <br>  |  ├12 Card    <br>  |  |  ├13 Text [LEAF] <br>  |  |  ├14 Text [LEAF] <br>  |  |  ├15 [Merged-hca]    <br>  |  |  |  ├16 Text [LEAF] <br>  |  |  |  ├17 Text [LEAF] <br>  |  |  |  ├18 Text [LEAF] <br>  |  |  ├19 [Merged-hca]    <br>  |  |  |  ├20 Text [LEAF] <br>  |  |  |  ├21 Text [LEAF] <br>  |  |  |  ├22 Text [LEAF] <br>  |  |  ├23 [Merged-hca]    <br>  |  |  |  ├24 Text [LEAF] <br>  |  |  |  ├25 Text [LEAF] <br>  |  |  |  ├26 Text [LEAF] <br>  |  |  ├27 [Merged-hca]    <br>  |  |  |  ├28 Text [LEAF] <br>  |  |  |  ├29 Text [LEAF] <br>  |  |  ├30 [Merged-vca]    <br>  |  |  |  ├31 Icon [LEAF] <br>  |  |  |  ├32 Text [LEAF] <br>  ├1 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000071.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.36586092852816143<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>16402<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├3 Toolbar    <br>  |  ├4 Icon [LEAF] <br>  ├1 [Merged-vca]    <br>  |  ├2 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000072.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Text Button [LEAF] <br>  ├2 [Merged-vca]    <br>  |  ├3 Image [LEAF] <br>  |  ├4 Advertisement    <br>  |  |  ├5 Web View    <br>  |  |  |  ├6 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000073.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.3717886519439644<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>20838<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 [Merged-vca]    <br>  |  ├5 [Merged-hca]    <br>  |  |  ├6 Icon [LEAF] <br>  |  |  ├7 Icon [LEAF] <br>  ├1 Advertisement    <br>  |  ├2 Web View    <br>  |  |  ├3 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000074.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar [LEAF] <br>  ├2 List Item    <br>  |  ├3 Icon [LEAF] <br>  |  ├4 [Merged-vca]    <br>  |  |  ├5 Image [LEAF] <br>  |  |  ├6 Text [LEAF] <br>  |  |  ├7 Text [LEAF] <br>  ├8 List Item    <br>  |  ├9 Image [LEAF] <br>  |  ├10 Text [LEAF] <br>  |  ├11 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000075.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.37296571237757636<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>61603<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├5 [Merged-vca]    <br>  |  ├6 [Merged-hca] [LEAF] <br>  |  ├7 Toolbar    <br>  |  |  ├8 Icon [LEAF] <br>  ├4 [Merged-vca] [LEAF] <br>  ├1 [Merged-vca]    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000076.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├5 [Merged-vca]    <br>  |  ├6 Toolbar    <br>  |  |  ├7 Icon [LEAF] <br>  |  |  ├8 Text [LEAF] <br>  |  ├9 Multi-Tab    <br>  |  |  ├10 Text Button [LEAF] <br>  |  |  ├11 Text Button [LEAF] <br>  ├12 [Merged-vca]    <br>  |  ├13 List Item [LEAF] <br>  |  ├14 [Merged-hca]    <br>  |  |  ├15 Text [LEAF] <br>  |  |  ├16 Text [LEAF] <br>  |  ├17 [Merged-hca]    <br>  |  |  ├18 Text [LEAF] <br>  |  |  ├19 Text [LEAF] <br>  |  ├20 [Merged-hca]    <br>  |  |  ├21 Text [LEAF] <br>  |  |  ├22 Text [LEAF] <br>  ├4 Text [LEAF] <br>  ├1 Card    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000077.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.3768139054287974<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>39077<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├5 Toolbar    <br>  |  ├6 Icon [LEAF] <br>  ├4 [Merged-vca] [LEAF] <br>  ├1 [Merged-vca] [LEAF] <br>  ├3 [Merged-vca] [LEAF] <br>  ├2 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000078.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Image [LEAF] <br>  ├3 [Merged-hca]    <br>  |  ├4 Text [LEAF] <br>  |  ├5 Text Button [LEAF] <br>  ├2 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000079.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.37876651033836684<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>5<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>67518<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Toolbar [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000080.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text Button [LEAF] <br>  ├3 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000081.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.3842494166125154<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>5383<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 Toolbar    <br>  |  ├3 Icon [LEAF] <br>  ├1 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000082.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├3 [Merged-hca]    <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Text Button [LEAF] <br>  ├1 Image [LEAF] <br>  ├9 [Merged-vca]    <br>  |  ├10 Input [LEAF] <br>  |  ├11 Input [LEAF] <br>  |  ├12 [Merged-hca]    <br>  |  |  ├13 Text Button [LEAF] <br>  |  |  ├14 Text Button [LEAF] <br>  ├2 Text Button [LEAF] <br>  ├6 [Merged-hca]    <br>  |  ├7 Image [LEAF] <br>  |  ├8 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000083.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.3997126510494148<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>5<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>63040<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 Background Image    <br>  |  ├5 Background Image [LEAF] <br>  ├8 [Merged-vca]    <br>  |  ├9 [Merged-hca] [LEAF] <br>  |  ├10 Toolbar    <br>  |  |  ├11 Icon [LEAF] <br>  |  |  ├12 Icon [LEAF] <br>  ├7 Text Button [LEAF] <br>  ├6 Text [LEAF] <br>  ├2 Text [LEAF] <br>  ├1 Text Button [LEAF] <br>  ├3 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000084.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 On/Off Switch    <br>  |  ├2 Background Image [LEAF] <br>  ├6 [Merged-vca]    <br>  |  ├7 Toolbar    <br>  |  |  ├8 Icon [LEAF] <br>  |  ├9 Image [LEAF] <br>  ├3 Text [LEAF] <br>  ├4 Text [LEAF] <br>  ├5 Web View [LEAF] <br>  ├10 [Merged-vca]    <br>  |  ├11 Slider [LEAF] <br>  |  ├12 [Merged-hca]    <br>  |  |  ├13 Icon [LEAF] <br>  |  |  ├14 Image [LEAF] <br>  |  |  ├15 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000085.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.41468951223825073<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>5<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>9521<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├6 Toolbar    <br>  |  ├7 Icon [LEAF] <br>  ├5 [Merged-vca] [LEAF] <br>  ├1 [Merged-vca] [LEAF] <br>  ├3 [Merged-vca]    <br>  |  ├4 Text [LEAF] <br>  ├2 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000086.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Text [LEAF] <br>  ├4 Image [LEAF] <br>  ├5 Text [LEAF] <br>  ├6 [Merged-vca]    <br>  |  ├7 Text [LEAF] <br>  |  ├8 Input [LEAF] <br>  ├9 [Merged-vca]    <br>  |  ├10 Text Button [LEAF] <br>  |  ├11 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000087.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.42307835958240203<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>7577<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000088.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├4 [Merged-vca]    <br>  |  ├5 Text [LEAF] <br>  |  ├6 Text [LEAF] <br>  |  ├7 Text [LEAF] <br>  |  ├8 Text [LEAF] <br>  |  ├9 Text [LEAF] <br>  |  ├10 Text [LEAF] <br>  ├1 [Merged-hca]    <br>  |  ├2 Text Button [LEAF] <br>  |  ├3 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000089.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.43130747387483576<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>33849<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 Background Image [LEAF] <br>  ├3 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000090.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Pager Indicator [LEAF] <br>  ├4 Text [LEAF] <br>  ├2 Text [LEAF] <br>  ├3 Video [LEAF] <br>  ├5 [Merged-hca]    <br>  |  ├6 Text Button [LEAF] <br>  |  ├7 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000091.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.4387916782497392<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>5<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>16477<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 Toolbar    <br>  |  ├5 Icon [LEAF] <br>  ├1 Web View    <br>  |  ├2 Background Image [LEAF] <br>  |  ├3 Background Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000092.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├2 [Merged-vca]    <br>  |  ├3 Button Bar    <br>  |  |  ├4 Text Button [LEAF] <br>  |  |  ├5 Text Button [LEAF] <br>  |  ├6 Text [LEAF] <br>  ├1 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000093.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.44007849451056663<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>65272<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├7 Toolbar    <br>  |  ├8 Icon [LEAF] <br>  ├4 Advertisement    <br>  |  ├5 Web View    <br>  |  |  ├6 Web View [LEAF] <br>  ├1 [Merged-hca]    <br>  |  ├2 Text [LEAF] <br>  ├3 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000094.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Icon [LEAF] <br>  ├4 Card    <br>  |  ├5 Text [LEAF] <br>  |  ├6 Image [LEAF] <br>  |  ├7 Text Button [LEAF] <br>  |  ├8 Text [LEAF] <br>  ├9 Card    <br>  |  ├10 Text [LEAF] <br>  |  ├11 Image [LEAF] <br>  |  ├12 Text Button [LEAF] <br>  |  ├13 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000095.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.44132967729330397<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>71097<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000096.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├2 [Merged-hca]    <br>  |  ├3 Text [LEAF] <br>  |  ├4 Icon [LEAF] <br>  ├1 Radio Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000097.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.44314929766332833<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>68256<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Drawer    <br>  |  ├2 List Item    <br>  |  |  ├3 [Merged-vca] [LEAF] <br>  |  ├4 List Item    <br>  |  |  ├5 [Merged-vca]    <br>  |  |  |  ├6 Text [LEAF] <br>  |  |  |  ├7 Image [LEAF] <br>  |  |  ├8 [Merged-vca]    <br>  |  |  |  ├9 Text [LEAF] <br>  |  |  |  ├10 Image [LEAF] <br>  |  |  ├11 [Merged-vca]    <br>  |  |  |  ├12 Text [LEAF] <br>  |  |  ├13 [Merged-vca]    <br>  |  |  |  ├14 Icon [LEAF] <br>  ├15 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000098.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Drawer    <br>  |  ├2 List Item    <br>  |  |  ├3 [Merged-vca]    <br>  |  |  |  ├4 Text [LEAF] <br>  |  |  |  ├5 Icon [LEAF] <br>  |  |  ├6 [Merged-vca]    <br>  |  |  |  ├7 Text [LEAF] <br>  |  |  |  ├8 Image [LEAF] <br>  |  |  ├9 [Merged-vca]    <br>  |  |  |  ├10 Text [LEAF] <br>  |  |  |  ├11 Image [LEAF] <br>  |  |  ├12 [Merged-vca]    <br>  |  |  |  ├13 Text [LEAF] <br>  |  |  |  ├14 Icon [LEAF] <br>  |  ├15 List Item    <br>  |  |  ├16 Text [LEAF] <br>  |  |  ├17 Icon [LEAF] <br>  ├18 Text [LEAF] <br>  ├19 [Merged-hca]    <br>  |  ├20 Image [LEAF] <br>  |  ├21 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000099.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.44330999067276955<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>23081<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 List Item [LEAF] <br>  |  ├3 List Item [LEAF] <br>  |  ├4 List Item [LEAF] <br>  |  ├5 Text [LEAF] <br>  |  ├6 List Item [LEAF] <br>  |  ├7 List Item [LEAF] <br>  |  ├8 List Item [LEAF] <br>  |  ├9 Text    <br>  |  |  ├10 Icon [LEAF] <br>  ├11 [Merged-vca]    <br>  |  ├12 Web View    <br>  |  |  ├13 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000100.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├3 [Merged-vca]    <br>  |  ├4 Toolbar    <br>  |  |  ├5 Text [LEAF] <br>  |  |  ├6 Icon [LEAF] <br>  |  ├7 Card    <br>  |  |  ├8 Text [LEAF] <br>  |  |  ├9 Text [LEAF] <br>  |  |  ├10 [Merged-hca]    <br>  |  |  |  ├11 Icon [LEAF] <br>  |  |  |  ├12 Text Button [LEAF] <br>  ├13 [Merged-vca]    <br>  |  ├14 List Item    <br>  |  |  ├15 Icon [LEAF] <br>  |  |  ├16 Text [LEAF] <br>  |  ├17 List Item    <br>  |  |  ├18 Icon [LEAF] <br>  |  |  ├19 Text [LEAF] <br>  |  ├20 List Item    <br>  |  |  ├21 Icon [LEAF] <br>  |  |  ├22 Text [LEAF] <br>  |  ├23 List Item    <br>  |  |  ├24 Icon [LEAF] <br>  |  |  ├25 Text [LEAF] <br>  |  ├26 List Item    <br>  |  |  ├27 Icon [LEAF] <br>  |  |  ├28 Text [LEAF] <br>  ├1 Text Button [LEAF] <br>  ├2 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000101.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.44451646608109624<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>39025<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├8 Toolbar    <br>  |  ├9 Icon [LEAF] <br>  |  ├10 Icon [LEAF] <br>  ├7 [Merged-hca] [LEAF] <br>  ├4 [Merged-vca]    <br>  |  ├5 Text [LEAF] <br>  ├1 [Merged-hca] [LEAF] <br>  ├6 [Merged-hca] [LEAF] <br>  ├2 [Merged-hca] [LEAF] <br>  ├3 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000102.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Image [LEAF] <br>  |  ├3 Text [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  ├6 Image [LEAF] <br>  ├7 Image [LEAF] <br>  ├8 [Merged-hca]    <br>  |  ├9 Text Button [LEAF] <br>  |  ├10 Text [LEAF] <br>  |  ├11 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000103.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.4688912967752691<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>5<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>71805<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 Toolbar    <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Icon [LEAF] <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000104.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Background Image [LEAF] <br>  ├2 [Merged-hca]    <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Image [LEAF] <br>  ├5 [Merged-hca]    <br>  |  ├6 Icon [LEAF] <br>  |  ├7 Icon [LEAF] <br>  |  ├8 Image [LEAF] <br>  |  ├9 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000105.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.49502970650276323<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>48461<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├12 Toolbar    <br>  |  ├13 Icon [LEAF] <br>  ├5 List Item    <br>  |  ├6 Text [LEAF] <br>  ├11 List Item [LEAF] <br>  ├10 List Item [LEAF] <br>  ├8 List Item    <br>  |  ├9 Text [LEAF] <br>  ├1 List Item [LEAF] <br>  ├2 List Item    <br>  |  ├3 Icon [LEAF] <br>  ├7 List Item [LEAF] <br>  ├4 List Item [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000106.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Text [LEAF] <br>  ├4 Text [LEAF] <br>  ├5 List Item    <br>  |  ├6 Text [LEAF] <br>  |  ├7 Text [LEAF] <br>  ├8 List Item    <br>  |  ├9 Text [LEAF] <br>  |  ├10 Text [LEAF] <br>  ├11 List Item    <br>  |  ├12 Text [LEAF] <br>  |  ├13 Text [LEAF] <br>  |  ├14 On/Off Switch [LEAF] <br>  ├15 List Item    <br>  |  ├16 Text [LEAF] <br>  |  ├17 Text [LEAF] <br>  ├18 List Item    <br>  |  ├19 Text [LEAF] <br>  |  ├20 Text [LEAF] <br>  ├21 List Item    <br>  |  ├22 Text [LEAF] <br>  |  ├23 Text [LEAF] <br>  |  ├24 On/Off Switch [LEAF] <br>  ├25 List Item    <br>  |  ├26 Text [LEAF] <br>  |  ├27 Text [LEAF] <br>  |  ├28 On/Off Switch [LEAF] <br>  ├29 List Item    <br>  |  ├30 Text [LEAF] <br>  |  ├31 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000107.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.49913764446832926<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>51891<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000108.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├5 [Merged-vca]    <br>  |  ├6 Toolbar    <br>  |  |  ├7 Text [LEAF] <br>  |  ├8 Text [LEAF] <br>  ├1 Pager Indicator [LEAF] <br>  ├2 [Merged-hca]    <br>  |  ├3 Text Button [LEAF] <br>  |  ├4 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000109.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5095963498773717<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>43071<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 Toolbar    <br>  |  ├3 [Merged-hca]    <br>  |  |  ├4 Icon [LEAF] <br>  |  |  ├5 Icon [LEAF] <br>  |  |  ├6 Icon [LEAF] <br>  ├1 Advertisement [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000110.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Text [LEAF] <br>  ├2 [Merged-hca]    <br>  |  ├3 Text Button [LEAF] <br>  |  ├4 Text Button [LEAF] <br>  ├5 [Merged-hca]    <br>  |  ├6 List Item    <br>  |  |  ├7 Text [LEAF] <br>  |  ├8 List Item    <br>  |  |  ├9 Text [LEAF] <br>  |  ├10 List Item    <br>  |  |  ├11 Text [LEAF] <br>  ├12 [Merged-hca]    <br>  |  ├13 List Item    <br>  |  |  ├14 Image [LEAF] <br>  |  |  ├15 Text [LEAF] <br>  |  ├16 List Item    <br>  |  |  ├17 Image [LEAF] <br>  |  |  ├18 Text [LEAF] <br>  |  ├19 List Item    <br>  |  |  ├20 Text [LEAF] <br>  ├21 [Merged-hca]    <br>  |  ├22 List Item    <br>  |  |  ├23 Text [LEAF] <br>  |  ├24 List Item    <br>  |  |  ├25 Text [LEAF] <br>  |  ├26 List Item    <br>  |  |  ├27 Text [LEAF] <br>  ├28 [Merged-hca]    <br>  |  ├29 List Item    <br>  |  |  ├30 Text [LEAF] <br>  |  ├31 List Item    <br>  |  |  ├32 Text [LEAF] <br>  |  ├33 List Item    <br>  |  |  ├34 Icon [LEAF] <br>  |  |  ├35 Text [LEAF] <br>  ├36 [Merged-hca]    <br>  |  ├37 List Item    <br>  |  |  ├38 Text [LEAF] <br>  |  ├39 List Item    <br>  |  |  ├40 Text [LEAF] <br>  |  ├41 List Item    <br>  |  |  ├42 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000111.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5119487694490086<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>7<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>54920<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Drawer    <br>  |  ├2 [Merged-vca]    <br>  |  |  ├3 Text Button [LEAF] <br>  |  |  ├4 Text [LEAF] <br>  |  |  ├5 Text [LEAF] <br>  |  |  ├6 Text [LEAF] <br>  |  |  ├7 Text [LEAF] <br>  |  |  ├8 Text [LEAF] <br>  ├9 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000112.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Drawer    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 [Merged-vca]    <br>  |  |  ├4 Text Button [LEAF] <br>  |  |  ├5 Text Button [LEAF] <br>  |  |  ├6 Text Button [LEAF] <br>  |  |  ├7 Text Button [LEAF] <br>  |  |  ├8 Text Button [LEAF] <br>  |  ├9 [Merged-vca]    <br>  |  |  ├10 Text Button [LEAF] <br>  |  |  ├11 Text Button [LEAF] <br>  |  |  ├12 Text Button [LEAF] <br>  |  |  ├13 Text Button [LEAF] <br>  |  ├14 [Merged-vca]    <br>  |  |  ├15 Text Button [LEAF] <br>  |  |  ├16 Text Button [LEAF] <br>  |  |  ├17 Text Button [LEAF] <br>  ├18 [Merged-vca]    <br>  |  ├19 Text [LEAF] <br>  |  ├20 On/Off Switch    <br>  |  |  ├21 Input [LEAF] <br>  |  |  ├22 Text [LEAF] <br>  |  ├23 Text [LEAF] <br>  |  ├24 On/Off Switch    <br>  |  |  ├25 Input [LEAF] <br>  |  |  ├26 Text [LEAF] <br>  |  ├27 On/Off Switch    <br>  |  |  ├28 Input [LEAF] <br>  |  |  ├29 Text [LEAF] <br>  |  ├30 On/Off Switch    <br>  |  |  ├31 Input [LEAF] <br>  |  |  ├32 Text [LEAF] <br>  |  ├33 On/Off Switch    <br>  |  |  ├34 Input [LEAF] <br>  |  |  ├35 Text [LEAF] <br>  |  ├36 On/Off Switch    <br>  |  |  ├37 Input [LEAF] <br>  |  |  ├38 Text [LEAF] <br>  |  ├39 On/Off Switch    <br>  |  |  ├40 Input [LEAF] <br>  |  |  ├41 Text [LEAF] <br>  |  ├42 [Merged-hca]    <br>  |  |  ├43 Image [LEAF] <br>  |  |  ├44 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000113.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5119874685671796<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>20254<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├9 Toolbar    <br>  |  ├10 Icon [LEAF] <br>  |  ├11 Icon [LEAF] <br>  ├3 List Item [LEAF] <br>  ├2 List Item [LEAF] <br>  ├4 List Item [LEAF] <br>  ├1 List Item [LEAF] <br>  ├8 Advertisement [LEAF] <br>  ├7 List Item [LEAF] <br>  ├6 List Item [LEAF] <br>  ├5 List Item [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000114.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├5 List Item    <br>  |  ├6 Text Button [LEAF] <br>  ├7 List Item    <br>  |  ├8 Text Button [LEAF] <br>  ├9 List Item    <br>  |  ├10 Web View [LEAF] <br>  ├11 List Item    <br>  |  ├12 Text Button [LEAF] <br>  ├13 List Item    <br>  |  ├14 Text [LEAF] <br>  |  ├15 Image [LEAF] <br>  |  ├16 [Merged-hca]    <br>  |  |  ├17 Icon [LEAF] <br>  |  |  ├18 Text [LEAF] <br>  ├19 [Merged-hca]    <br>  |  ├20 Icon [LEAF] <br>  |  ├21 Icon [LEAF] <br>  ├1 Advertisement    <br>  |  ├2 Advertisement    <br>  |  |  ├3 Web View    <br>  |  |  |  ├4 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000115.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5142442932194168<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>44252<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├8 Toolbar    <br>  |  ├9 Icon [LEAF] <br>  ├3 [Merged-hca] [LEAF] <br>  ├7 Advertisement [LEAF] <br>  ├6 List Item [LEAF] <br>  ├2 List Item [LEAF] <br>  ├1 List Item [LEAF] <br>  ├5 List Item [LEAF] <br>  ├4 List Item [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000116.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├26 [Merged-hca]    <br>  |  ├27 Text Button [LEAF] <br>  |  ├28 Text Button [LEAF] <br>  |  ├29 Text Button [LEAF] <br>  ├3 List Item    <br>  |  ├4 [Merged-hca]    <br>  |  |  ├5 Text [LEAF] <br>  |  |  ├6 Text [LEAF] <br>  |  ├7 [Merged-hca]    <br>  |  |  ├8 List Item    <br>  |  |  |  ├9 Text [LEAF] <br>  |  |  |  ├10 Image [LEAF] <br>  |  |  |  ├11 [Merged-vca]    <br>  |  |  |  |  ├12 Text [LEAF] <br>  |  |  |  |  ├13 Text [LEAF] <br>  |  |  |  ├14 [Merged-hca]    <br>  |  |  |  |  ├15 Image [LEAF] <br>  |  |  |  |  ├16 Image    <br>  |  |  |  |  |  ├17 Icon [LEAF] <br>  |  |  ├18 List Item    <br>  |  |  |  ├19 Image [LEAF] <br>  |  |  |  ├20 [Merged-vca]    <br>  |  |  |  |  ├21 Text [LEAF] <br>  |  |  |  |  ├22 [Merged-hca]    <br>  |  |  |  |  |  ├23 Image [LEAF] <br>  |  |  |  |  |  ├24 Text [LEAF] <br>  ├25 Text [LEAF] <br>  ├30 [Merged-hca]    <br>  |  ├31 List Item    <br>  |  |  ├32 Image    <br>  |  |  |  ├33 Icon [LEAF] <br>  |  |  ├34 Text [LEAF] <br>  |  |  ├35 Image [LEAF] <br>  |  ├36 List Item    <br>  |  |  ├37 Image    <br>  |  |  |  ├38 Image [LEAF] <br>  |  |  ├39 Text [LEAF] <br>  |  |  ├40 Image [LEAF] <br>  ├1 Advertisement    <br>  |  ├2 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000117.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5267012249488688<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>6<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>20251<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├10 Toolbar    <br>  |  ├11 Icon [LEAF] <br>  |  ├12 Icon [LEAF] <br>  ├3 List Item [LEAF] <br>  ├1 List Item [LEAF] <br>  ├5 List Item [LEAF] <br>  ├2 List Item [LEAF] <br>  ├9 Advertisement [LEAF] <br>  ├7 List Item [LEAF] <br>  ├4 List Item [LEAF] <br>  ├6 List Item [LEAF] <br>  ├8 List Item [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000118.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├5 List Item    <br>  |  ├6 Text Button [LEAF] <br>  ├7 List Item    <br>  |  ├8 Text Button [LEAF] <br>  ├9 List Item    <br>  |  ├10 Text Button [LEAF] <br>  ├11 List Item    <br>  |  ├12 Web View [LEAF] <br>  ├13 List Item    <br>  |  ├14 Text Button [LEAF] <br>  ├15 [Merged-hca]    <br>  |  ├16 Icon [LEAF] <br>  |  ├17 Icon [LEAF] <br>  ├1 Advertisement    <br>  |  ├2 Advertisement    <br>  |  |  ├3 Web View    <br>  |  |  |  ├4 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000119.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5293769865022421<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>66225<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├5 Toolbar    <br>  |  ├6 Icon [LEAF] <br>  ├2 [Merged-hca] [LEAF] <br>  ├1 List Item [LEAF] <br>  ├4 List Item [LEAF] <br>  ├3 List Item [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000120.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 [Merged-vca]    <br>  |  |  ├3 Image [LEAF] <br>  |  |  ├4 Text [LEAF] <br>  |  ├5 [Merged-hca]    <br>  |  |  ├6 Icon [LEAF] <br>  |  |  ├7 Icon [LEAF] <br>  ├8 Multi-Tab    <br>  |  ├9 Text [LEAF] <br>  |  ├10 Text [LEAF] <br>  |  ├11 Text [LEAF] <br>  |  ├12 Text [LEAF] <br>  ├13 List Item    <br>  |  ├14 Text [LEAF] <br>  |  ├15 Image [LEAF] <br>  |  ├16 Icon [LEAF] <br>  |  ├17 [Merged-vca]    <br>  |  |  ├18 Text [LEAF] <br>  |  |  ├19 Text [LEAF] <br>  ├20 List Item    <br>  |  ├21 Image [LEAF] <br>  |  ├22 Text [LEAF] <br>  |  ├23 [Merged-hca]    <br>  |  |  ├24 Text [LEAF] <br>  |  |  ├25 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000121.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5308968663566815<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>54902<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Modal    <br>  |  ├2 [Merged-vca]    <br>  |  |  ├3 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000122.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Modal    <br>  |  ├2 Image [LEAF] <br>  |  ├3 Text Button [LEAF] <br>  |  ├4 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000123.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5376822462820452<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>61978<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├9 Toolbar    <br>  |  ├10 Icon [LEAF] <br>  ├3 List Item [LEAF] <br>  ├7 List Item [LEAF] <br>  ├2 List Item [LEAF] <br>  ├1 List Item [LEAF] <br>  ├8 [Merged-hca] [LEAF] <br>  ├5 List Item [LEAF] <br>  ├6 List Item [LEAF] <br>  ├4 List Item [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000124.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text [LEAF] <br>  ├3 List Item    <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Text [LEAF] <br>  ├6 List Item    <br>  |  ├7 Image [LEAF] <br>  |  ├8 Text [LEAF] <br>  ├9 List Item    <br>  |  ├10 Image [LEAF] <br>  |  ├11 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000125.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5426073153787692<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>5<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>32844<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├6 Toolbar    <br>  |  ├7 Icon [LEAF] <br>  ├5 [Merged-vca] [LEAF] <br>  ├4 [Merged-vca] [LEAF] <br>  ├1 Text [LEAF] <br>  ├3 [Merged-hca] [LEAF] <br>  ├2 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000126.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Text [LEAF] <br>  ├4 Text [LEAF] <br>  ├5 Text [LEAF] <br>  ├6 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000127.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5495872503596098<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>30820<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 Toolbar    <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Icon [LEAF] <br>  |  ├7 Icon [LEAF] <br>  ├1 [Merged-vca]    <br>  |  ├2 [Merged-vca]    <br>  |  |  ├3 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000128.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Text [LEAF] <br>  ├9 [Merged-vca]    <br>  |  ├10 Toolbar [LEAF] <br>  |  ├11 List Item    <br>  |  |  ├12 Text [LEAF] <br>  |  |  ├13 [Merged-hca]    <br>  |  |  |  ├14 Text Button [LEAF] <br>  |  |  |  ├15 Image [LEAF] <br>  ├6 [Merged-hca]    <br>  |  ├7 Text Button [LEAF] <br>  |  ├8 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000129.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5499784623465112<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>15285<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├3 Toolbar [LEAF] <br>  ├2 Advertisement [LEAF] <br>  ├1 Background Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000130.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Image [LEAF] <br>  ├3 Background Image [LEAF] <br>  ├4 [Merged-vca]    <br>  |  ├5 Text Button [LEAF] <br>  |  ├6 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000131.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5584231560386043<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>30578<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├3 Toolbar    <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Icon [LEAF] <br>  ├1 [Merged-hca] [LEAF] <br>  ├2 Advertisement [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000132.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Image [LEAF] <br>  |  ├4 Text [LEAF] <br>  |  ├5 Text [LEAF] <br>  |  ├6 Image [LEAF] <br>  |  ├7 [Merged-vca]    <br>  |  |  ├8 Text [LEAF] <br>  |  |  ├9 Text [LEAF] <br>  ├27 Multi-Tab    <br>  |  ├28 Text Button [LEAF] <br>  |  ├29 Text [LEAF] <br>  |  ├30 Text [LEAF] <br>  ├10 List Item    <br>  |  ├11 Text [LEAF] <br>  |  ├12 Toolbar    <br>  |  |  ├13 Icon [LEAF] <br>  |  |  ├14 Icon [LEAF] <br>  |  ├15 Image [LEAF] <br>  ├16 List Item    <br>  |  ├17 Icon [LEAF] <br>  |  ├18 Text [LEAF] <br>  |  ├19 [Merged-vca]    <br>  |  |  ├20 Text [LEAF] <br>  |  |  ├21 Image [LEAF] <br>  |  |  ├22 [Merged-hca]    <br>  |  |  |  ├23 Icon [LEAF] <br>  |  |  |  ├24 Text [LEAF] <br>  |  |  |  ├25 Text [LEAF] <br>  |  |  |  ├26 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000133.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5604696258930838<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>57427<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├5 Toolbar    <br>  |  ├6 Icon [LEAF] <br>  ├1 [Merged-vca]    <br>  |  ├2 List Item    <br>  |  |  ├3 Image [LEAF] <br>  |  ├4 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000134.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Web View [LEAF] <br>  ├3 [Merged-hca]    <br>  |  ├4 Text Button [LEAF] <br>  |  ├5 Text Button [LEAF] <br>  ├2 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000135.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5634513395159952<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>32114<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 Web View    <br>  |  ├3 Web View [LEAF] <br>  ├1 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000136.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Web View    <br>  |  ├2 Web View [LEAF] <br>  ├3 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000137.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.5730657105289282<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>41648<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 List Item [LEAF] <br>  |  ├3 List Item [LEAF] <br>  |  ├4 List Item [LEAF] <br>  |  ├5 List Item [LEAF] <br>  |  ├6 List Item [LEAF] <br>  |  ├7 [Merged-hca] [LEAF] <br>  ├8 [Merged-hca]    <br>  |  ├9 Icon [LEAF] <br>  |  ├10 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000138.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├6 [Merged-vca]    <br>  |  ├7 Image [LEAF] <br>  |  ├8 Multi-Tab    <br>  |  |  ├9 Text [LEAF] <br>  |  |  ├10 Text [LEAF] <br>  |  |  ├11 Text [LEAF] <br>  |  |  ├12 Text [LEAF] <br>  |  |  ├13 Text [LEAF] <br>  |  |  ├14 Text [LEAF] <br>  |  ├15 [Merged-hca]    <br>  |  |  ├16 Card    <br>  |  |  |  ├17 Image [LEAF] <br>  |  |  |  ├18 Text [LEAF] <br>  |  |  ├19 Card    <br>  |  |  |  ├20 Image [LEAF] <br>  |  |  |  ├21 Text [LEAF] <br>  |  ├22 [Merged-hca]    <br>  |  |  ├23 Card    <br>  |  |  |  ├24 Image [LEAF] <br>  |  |  |  ├25 Text [LEAF] <br>  |  |  ├26 Card    <br>  |  |  |  ├27 Image [LEAF] <br>  |  |  |  ├28 Text [LEAF] <br>  |  ├29 [Merged-hca]    <br>  |  |  ├30 Card    <br>  |  |  |  ├31 Image [LEAF] <br>  |  |  |  ├32 Text [LEAF] <br>  |  |  ├33 Card    <br>  |  |  |  ├34 Image [LEAF] <br>  |  |  |  ├35 Text [LEAF] <br>  ├2 Toolbar    <br>  |  ├3 Text [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  ├1 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000139.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.6040311324873326<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>71479<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 Toolbar    <br>  |  ├5 Icon [LEAF] <br>  ├1 List Item    <br>  |  ├2 Image [LEAF] <br>  ├3 Advertisement [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000140.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Image [LEAF] <br>  |  ├3 Text [LEAF] <br>  ├4 List Item    <br>  |  ├5 Pager Indicator [LEAF] <br>  |  ├6 Image [LEAF] <br>  ├7 List Item    <br>  |  ├8 Image [LEAF] <br>  |  ├9 [Merged-hca]    <br>  |  |  ├10 Image [LEAF] <br>  |  |  ├11 Image [LEAF] <br>  |  ├12 [Merged-hca]    <br>  |  |  ├13 Text [LEAF] <br>  |  |  ├14 Text [LEAF] <br>  ├15 List Item    <br>  |  ├16 [Merged-hca]    <br>  |  |  ├17 Image [LEAF] <br>  |  |  ├18 Image [LEAF] <br>  |  ├19 [Merged-hca]    <br>  |  |  ├20 Text [LEAF] <br>  |  |  ├21 Text [LEAF] <br>  ├22 List Item    <br>  |  ├23 Image [LEAF] <br>  |  ├24 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000141.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.609495551654303<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>63726<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 List Item [LEAF] <br>  |  ├3 List Item [LEAF] <br>  |  ├4 List Item [LEAF] <br>  |  ├5 List Item [LEAF] <br>  |  ├6 List Item [LEAF] <br>  |  ├7 List Item [LEAF] <br>  |  ├8 [Merged-hca] [LEAF] <br>  |  ├9 Toolbar    <br>  |  |  ├10 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000142.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├3 [Merged-vca]    <br>  |  ├4 List Item    <br>  |  |  ├5 [Merged-hca]    <br>  |  |  |  ├6 Text [LEAF] <br>  |  |  |  ├7 Text [LEAF] <br>  |  |  |  ├8 Text [LEAF] <br>  |  |  |  ├9 Text [LEAF] <br>  |  |  ├10 [Merged-vca]    <br>  |  |  |  ├11 [Merged-hca]    <br>  |  |  |  |  ├12 Text [LEAF] <br>  |  |  |  |  ├13 Text Button [LEAF] <br>  |  |  |  ├14 [Merged-hca]    <br>  |  |  |  |  ├15 Text [LEAF] <br>  |  |  |  |  ├16 Text [LEAF] <br>  |  |  |  ├17 [Merged-hca]    <br>  |  |  |  |  ├18 Text [LEAF] <br>  |  |  |  |  ├19 Text [LEAF] <br>  |  ├20 List Item    <br>  |  |  ├21 Text [LEAF] <br>  |  |  ├22 Text [LEAF] <br>  |  |  ├23 Text [LEAF] <br>  |  |  ├24 Text [LEAF] <br>  |  ├25 List Item [LEAF] <br>  |  ├26 [Merged-hca]    <br>  |  |  ├27 Image [LEAF] <br>  |  |  ├28 Image [LEAF] <br>  |  |  ├29 Image [LEAF] <br>  |  |  ├30 Image [LEAF] <br>  |  ├31 [Merged-hca]    <br>  |  |  ├32 Icon [LEAF] <br>  |  |  ├33 Icon [LEAF] <br>  |  |  ├34 Image [LEAF] <br>  |  |  ├35 Image [LEAF] <br>  ├2 Icon [LEAF] <br>  ├1 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000143.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.6457423935061616<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>36479<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 Background Image [LEAF] <br>  ├3 [Merged-hca]    <br>  |  ├4 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000144.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Drawer    <br>  |  ├2 Text [LEAF] <br>  |  ├3 [Merged-vca]    <br>  |  |  ├4 Text Button [LEAF] <br>  |  |  ├5 Text Button [LEAF] <br>  |  |  ├6 Text Button [LEAF] <br>  |  |  ├7 Text Button [LEAF] <br>  |  |  ├8 Text Button [LEAF] <br>  |  |  ├9 Text Button [LEAF] <br>  |  ├10 [Merged-vca]    <br>  |  |  ├11 Text Button [LEAF] <br>  |  |  ├12 Text Button [LEAF] <br>  |  |  ├13 Text Button [LEAF] <br>  |  |  ├14 Text Button [LEAF] <br>  ├15 Toolbar    <br>  |  ├16 Text [LEAF] <br>  |  ├17 Image [LEAF] <br>  |  ├18 Text Button [LEAF] <br>  ├19 [Merged-hca]    <br>  |  ├20 Icon [LEAF] <br>  |  ├21 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000145.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.6556474802197494<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>47863<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Modal    <br>  |  ├2 [Merged-vca]    <br>  |  |  ├3 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000146.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Modal    <br>  |  ├2 Image [LEAF] <br>  |  ├3 Text [LEAF] <br>  |  ├4 Text [LEAF] <br>  |  ├5 [Merged-hca]    <br>  |  |  ├6 Text Button [LEAF] <br>  |  |  ├7 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000147.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.65754041975742<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>48893<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000148.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Icon [LEAF] <br>  ├4 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000149.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.6733348294293644<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>9851<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Background Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000150.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000151.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.6785312770925491<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>41985<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├6 Toolbar    <br>  |  ├7 Icon [LEAF] <br>  |  ├8 Icon [LEAF] <br>  ├3 [Merged-hca] [LEAF] <br>  ├2 List Item [LEAF] <br>  ├1 List Item [LEAF] <br>  ├5 Advertisement [LEAF] <br>  ├4 List Item [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000152.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├4 Toolbar    <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Text [LEAF] <br>  |  ├7 Icon [LEAF] <br>  |  ├8 Icon [LEAF] <br>  ├9 Multi-Tab    <br>  |  ├10 Text [LEAF] <br>  |  ├11 Text [LEAF] <br>  |  ├12 Text [LEAF] <br>  |  ├13 Text [LEAF] <br>  |  ├14 Text [LEAF] <br>  ├15 List Item    <br>  |  ├16 Text [LEAF] <br>  |  ├17 Text [LEAF] <br>  |  ├18 Text [LEAF] <br>  |  ├19 [Merged-hca]    <br>  |  |  ├20 Image [LEAF] <br>  |  |  ├21 Image [LEAF] <br>  ├22 List Item    <br>  |  ├23 Text [LEAF] <br>  |  ├24 Text [LEAF] <br>  |  ├25 [Merged-hca]    <br>  |  |  ├26 Image [LEAF] <br>  |  |  ├27 Image [LEAF] <br>  ├1 Advertisement    <br>  |  ├2 Web View    <br>  |  |  ├3 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000153.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.7148807022365549<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>58308<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 Toolbar    <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  ├1 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000154.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Icon [LEAF] <br>  ├18 [Merged-vca]    <br>  |  ├19 List Item    <br>  |  |  ├20 [Merged-vca]    <br>  |  |  |  ├21 Text [LEAF] <br>  |  |  |  ├22 Text [LEAF] <br>  |  |  ├23 [Merged-hca]    <br>  |  |  |  ├24 Icon [LEAF] <br>  |  |  |  ├25 Image [LEAF] <br>  |  ├26 List Item    <br>  |  |  ├27 [Merged-vca]    <br>  |  |  |  ├28 Text [LEAF] <br>  |  |  |  ├29 Text [LEAF] <br>  |  |  ├30 [Merged-hca]    <br>  |  |  |  ├31 Icon [LEAF] <br>  |  |  |  ├32 Image [LEAF] <br>  |  ├33 List Item    <br>  |  |  ├34 [Merged-vca]    <br>  |  |  |  ├35 Text [LEAF] <br>  |  |  |  ├36 Text [LEAF] <br>  |  |  ├37 [Merged-hca]    <br>  |  |  |  ├38 Icon [LEAF] <br>  |  |  |  ├39 Image [LEAF] <br>  ├8 [Merged-vca]    <br>  |  ├9 Advertisement    <br>  |  |  ├10 Web View    <br>  |  |  |  ├11 Web View [LEAF] <br>  |  ├12 [Merged-hca]    <br>  |  |  ├13 Icon [LEAF] <br>  |  |  ├14 Icon [LEAF] <br>  ├7 Input [LEAF] <br>  ├15 [Merged-vca]    <br>  |  ├16 Text [LEAF] <br>  |  ├17 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000155.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.7181399244610375<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>3492<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 List Item [LEAF] <br>  |  ├3 List Item [LEAF] <br>  |  ├4 List Item [LEAF] <br>  |  ├5 List Item [LEAF] <br>  |  ├6 List Item [LEAF] <br>  |  ├7 Advertisement [LEAF] <br>  ├8 [Merged-hca]    <br>  |  ├9 Icon [LEAF] <br>  |  ├10 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000156.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Background Image [LEAF] <br>  ├3 [Merged-hca]    <br>  |  ├4 Image [LEAF] <br>  |  ├5 Text [LEAF] <br>  ├10 [Merged-vca]    <br>  |  ├11 List Item    <br>  |  |  ├12 Input [LEAF] <br>  |  |  ├13 Text Button [LEAF] <br>  |  ├14 List Item    <br>  |  |  ├15 Text [LEAF] <br>  |  |  ├16 Text Button [LEAF] <br>  |  |  ├17 [Merged-hca]    <br>  |  |  |  ├18 Icon [LEAF] <br>  |  |  |  ├19 Text [LEAF] <br>  |  |  ├20 [Merged-hca]    <br>  |  |  |  ├21 Text [LEAF] <br>  |  |  |  ├22 Image [LEAF] <br>  |  |  ├23 [Merged-hca]    <br>  |  |  |  ├24 Text Button [LEAF] <br>  |  |  |  ├25 Icon [LEAF] <br>  |  |  ├26 [Merged-hca]    <br>  |  |  |  ├27 Text Button [LEAF] <br>  |  |  |  ├28 Text [LEAF] <br>  |  ├29 List Item    <br>  |  |  ├30 Image [LEAF] <br>  |  |  ├31 [Merged-hca]    <br>  |  |  |  ├32 [Merged-vca]    <br>  |  |  |  |  ├33 Text [LEAF] <br>  |  |  |  |  ├34 Text [LEAF] <br>  |  |  |  ├35 [Merged-vca]    <br>  |  |  |  |  ├36 Text [LEAF] <br>  |  |  |  |  ├37 Text [LEAF] <br>  |  ├38 Advertisement    <br>  |  |  ├39 Web View    <br>  |  |  |  ├40 Web View [LEAF] <br>  ├6 [Merged-hca]    <br>  |  ├7 Text [LEAF] <br>  |  ├8 Text [LEAF] <br>  |  ├9 Icon [LEAF] <br>  ├41 [Merged-vca]    <br>  |  ├42 [Merged-hca]    <br>  |  |  ├43 Icon [LEAF] <br>  |  |  ├44 Icon [LEAF] <br>  |  ├45 [Merged-hca]    <br>  |  |  ├46 Text [LEAF] <br>  |  |  ├47 Text [LEAF] <br>  ├2 Icon [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000157.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.721523668397041<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>5<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>50033<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├7 Toolbar    <br>  |  ├8 Icon [LEAF] <br>  |  ├9 Icon [LEAF] <br>  |  ├10 Icon [LEAF] <br>  ├1 [Merged-vca]    <br>  |  ├2 List Item [LEAF] <br>  |  ├3 List Item    <br>  |  |  ├4 Image [LEAF] <br>  |  ├5 List Item [LEAF] <br>  |  ├6 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000158.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Image [LEAF] <br>  |  ├4 Icon [LEAF] <br>  ├5 Image [LEAF] <br>  ├9 [Merged-vca]    <br>  |  ├10 Advertisement    <br>  |  |  ├11 Web View    <br>  |  |  |  ├12 Web View [LEAF] <br>  |  ├13 List Item    <br>  |  |  ├14 Text [LEAF] <br>  |  |  ├15 Text [LEAF] <br>  |  |  ├16 [Merged-hca]    <br>  |  |  |  ├17 Text Button [LEAF] <br>  |  |  |  ├18 Text Button [LEAF] <br>  |  |  |  ├19 Text Button [LEAF] <br>  |  ├20 List Item    <br>  |  |  ├21 Image [LEAF] <br>  |  |  ├22 Text [LEAF] <br>  |  |  ├23 Text [LEAF] <br>  ├6 Image [LEAF] <br>  ├7 Text [LEAF] <br>  ├8 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000159.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.7671502779548438<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>4<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>44155<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 Toolbar    <br>  |  ├3 Icon [LEAF] <br>  ├1 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000160.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├10 [Merged-hca]    <br>  |  ├11 Text Button [LEAF] <br>  |  ├12 Text Button [LEAF] <br>  ├2 Image [LEAF] <br>  ├3 [Merged-hca]    <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Text Button [LEAF] <br>  |  ├6 Text Button [LEAF] <br>  |  ├7 [Merged-vca]    <br>  |  |  ├8 Text Button [LEAF] <br>  |  |  ├9 Icon [LEAF] <br>  ├1 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000161.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.7761881199702395<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>3<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>71271<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Modal    <br>  |  ├2 Text Button [LEAF] <br>  |  ├3 Text [LEAF] <br>  |  ├4 Text [LEAF] <br>  |  ├5 Text [LEAF] <br>  |  ├6 Text [LEAF] <br>  |  ├7 Text Button [LEAF] <br>  |  ├8 Text [LEAF] <br>  |  ├9 Text [LEAF] <br>  |  ├10 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000162.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Modal    <br>  |  ├2 Text Button [LEAF] <br>  |  ├3 Text [LEAF] <br>  |  ├4 Text Button [LEAF] <br>  |  ├5 [Merged-hca]    <br>  |  |  ├6 Input [LEAF] <br>  |  |  ├7 Text Button [LEAF] <br>  |  ├8 [Merged-vca]    <br>  |  |  ├9 Image [LEAF] <br>  |  |  ├10 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000163.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.7842502013842915<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>4099<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Modal    <br>  |  ├2 List Item [LEAF] <br>  |  ├3 List Item [LEAF] <br>  |  ├4 List Item    <br>  |  |  ├5 Text [LEAF] <br>  |  ├6 List Item [LEAF] <br>  |  ├7 List Item    <br>  |  |  ├8 Text [LEAF] <br>  |  ├9 List Item    <br>  |  |  ├10 Text [LEAF] <br>  |  |  ├11 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000164.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Modal    <br>  |  ├2 List Item    <br>  |  |  ├3 Text [LEAF] <br>  |  ├4 List Item    <br>  |  |  ├5 Text [LEAF] <br>  |  ├6 List Item    <br>  |  |  ├7 Text [LEAF] <br>  |  ├8 List Item    <br>  |  |  ├9 Text [LEAF] <br>  |  ├10 List Item    <br>  |  |  ├11 Text [LEAF] <br>  |  ├12 List Item    <br>  |  |  ├13 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000165.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.7910927125308806<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>6021<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Modal    <br>  |  ├2 Text Button [LEAF] <br>  |  ├3 Text [LEAF] <br>  |  ├4 Text [LEAF] <br>  |  ├5 Text [LEAF] <br>  |  ├6 Text [LEAF] <br>  |  ├7 Text [LEAF] <br>  |  ├8 Text [LEAF] <br>  |  ├9 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000166.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Modal    <br>  |  ├2 Button Bar    <br>  |  |  ├3 Text Button [LEAF] <br>  |  |  ├4 Text Button [LEAF] <br>  |  ├5 Text [LEAF] <br>  |  ├6 Text [LEAF] <br>  |  ├7 [Merged-hca]    <br>  |  |  ├8 Image [LEAF] <br>  |  |  ├9 Image [LEAF] <br>  |  |  ├10 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000167.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.794226191316927<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>27393<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├4 Toolbar    <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Icon [LEAF] <br>  ├1 [Merged-hca]    <br>  |  ├2 Background Image [LEAF] <br>  |  ├3 Background Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000168.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Image [LEAF] <br>  |  ├3 Text [LEAF] <br>  ├4 Web View [LEAF] <br>  ├5 [Merged-hca]    <br>  |  ├6 Text Button [LEAF] <br>  |  ├7 Text Button [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000169.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.7961319853972257<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>37653<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Modal    <br>  |  ├2 List Item [LEAF] <br>  |  ├3 List Item [LEAF] <br>  |  ├4 List Item    <br>  |  |  ├5 Text [LEAF] <br>  |  ├6 List Item [LEAF] <br>  |  ├7 List Item    <br>  |  |  ├8 Text [LEAF] <br>  |  ├9 List Item    <br>  |  |  ├10 Text [LEAF] <br>  |  |  ├11 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000170.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Modal    <br>  |  ├2 List Item    <br>  |  |  ├3 Text [LEAF] <br>  |  ├4 Icon    <br>  |  |  ├5 Text [LEAF] <br>  |  ├6 List Item    <br>  |  |  ├7 Text [LEAF] <br>  |  ├8 List Item    <br>  |  |  ├9 Text [LEAF] <br>  |  ├10 List Item    <br>  |  |  ├11 Text [LEAF] <br>  |  ├12 List Item    <br>  |  |  ├13 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000171.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.8326040013803532<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>37266<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 [Merged-vca]    <br>  |  ├2 Background Image [LEAF] <br>  |  ├3 Toolbar    <br>  |  |  ├4 Icon [LEAF] <br>  |  |  ├5 Icon [LEAF] <br>  ├6 [Merged-hca] [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000172.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├8 [Merged-vca]    <br>  |  ├9 Toolbar    <br>  |  |  ├10 Icon [LEAF] <br>  |  |  ├11 Icon [LEAF] <br>  |  |  ├12 Image [LEAF] <br>  |  |  ├13 Icon [LEAF] <br>  |  ├14 Image [LEAF] <br>  ├4 [Merged-hca]    <br>  |  ├5 Text Button [LEAF] <br>  |  ├6 Text [LEAF] <br>  |  ├7 Text [LEAF] <br>  ├1 Advertisement    <br>  |  ├2 Web View    <br>  |  |  ├3 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000173.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.8419577974241367<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>6963<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├5 Toolbar    <br>  |  ├6 Icon [LEAF] <br>  |  ├7 Icon [LEAF] <br>  |  ├8 Icon [LEAF] <br>  |  ├9 Icon [LEAF] <br>  ├1 Web View    <br>  |  ├2 [Merged-vca]    <br>  |  |  ├3 Text [LEAF] <br>  |  |  ├4 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000174.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Icon [LEAF] <br>  ├7 List Item    <br>  |  ├8 Text [LEAF] <br>  |  ├9 Text Button [LEAF] <br>  ├10 List Item    <br>  |  ├11 Advertisement    <br>  |  |  ├12 Web View    <br>  |  |  |  ├13 Web View [LEAF] <br>  |  ├14 Icon [LEAF] <br>  |  ├15 [Merged-vca]    <br>  |  |  ├16 List Item    <br>  |  |  |  ├17 Icon [LEAF] <br>  |  |  |  ├18 Text [LEAF] <br>  |  |  |  ├19 Text [LEAF] <br>  |  |  ├20 List Item    <br>  |  |  |  ├21 Image [LEAF] <br>  |  |  |  ├22 Text [LEAF] <br>  |  |  |  ├23 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000175.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.8550933697223961<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>53164<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├7 Toolbar    <br>  |  ├8 Icon [LEAF] <br>  |  ├9 Icon [LEAF] <br>  |  ├10 Icon [LEAF] <br>  |  ├11 Icon [LEAF] <br>  ├1 [Merged-vca]    <br>  |  ├2 List Item [LEAF] <br>  |  ├3 List Item [LEAF] <br>  |  ├4 List Item [LEAF] <br>  |  ├5 List Item [LEAF] <br>  |  ├6 Advertisement [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000176.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Image [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Text Button [LEAF] <br>  ├11 [Merged-vca]    <br>  |  ├12 Advertisement    <br>  |  |  ├13 Web View    <br>  |  |  |  ├14 Web View [LEAF] <br>  |  ├15 List Item    <br>  |  |  ├16 [Merged-hca]    <br>  |  |  |  ├17 Text [LEAF] <br>  |  |  |  ├18 Text [LEAF] <br>  |  |  ├19 [Merged-vca]    <br>  |  |  |  ├20 Text [LEAF] <br>  |  |  |  ├21 Image [LEAF] <br>  |  ├22 List Item    <br>  |  |  ├23 Image [LEAF] <br>  |  |  ├24 Text [LEAF] <br>  |  |  ├25 [Merged-hca]    <br>  |  |  |  ├26 Text [LEAF] <br>  |  |  |  ├27 Text [LEAF] <br>  |  ├28 List Item    <br>  |  |  ├29 Image [LEAF] <br>  |  |  ├30 Text [LEAF] <br>  |  ├31 [Merged-hca]    <br>  |  |  ├32 List Item    <br>  |  |  |  ├33 Text [LEAF] <br>  |  |  |  ├34 Icon [LEAF] <br>  |  |  ├35 Text [LEAF] <br>  |  |  ├36 Icon [LEAF] <br>  ├6 [Merged-hca]    <br>  |  ├7 Text [LEAF] <br>  |  ├8 Text [LEAF] <br>  |  ├9 Text [LEAF] <br>  |  ├10 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000177.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.8569860645274672<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>60184<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 Toolbar    <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Text [LEAF] <br>  |  ├7 Icon [LEAF] <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000178.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Image [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  ├6 Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000179.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.8608622582896408<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>12725<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├3 Toolbar    <br>  |  ├4 [Merged-hca]    <br>  |  |  ├5 Icon [LEAF] <br>  |  |  ├6 Icon [LEAF] <br>  |  |  ├7 Icon [LEAF] <br>  ├2 Advertisement [LEAF] <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000180.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Web View [LEAF] <br>  ├2 Web View    <br>  |  ├3 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000181.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.8629545329263536<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>2<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>4632<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Modal    <br>  |  ├2 List Item [LEAF] <br>  |  ├3 List Item [LEAF] <br>  |  ├4 List Item [LEAF] <br>  |  ├5 List Item [LEAF] <br>  |  ├6 List Item [LEAF] <br>  |  ├7 List Item [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000182.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Modal    <br>  |  ├2 List Item    <br>  |  |  ├3 Text [LEAF] <br>  |  ├4 List Item    <br>  |  |  ├5 Text [LEAF] <br>  |  ├6 List Item    <br>  |  |  ├7 Text [LEAF] <br>  |  ├8 Icon    <br>  |  |  ├9 Text [LEAF] <br>  |  ├10 List Item    <br>  |  |  ├11 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000183.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.8695011656348257<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>3390<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Modal    <br>  |  ├2 [Merged-vca]    <br>  |  |  ├3 Text [LEAF] <br>  |  |  ├4 Text [LEAF] <br>  |  ├5 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000184.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Modal    <br>  |  ├2 Button Bar    <br>  |  |  ├3 Text Button [LEAF] <br>  |  |  ├4 Text Button [LEAF] <br>  |  ├5 Date Picker    <br>  |  |  ├6 Text Button [LEAF] <br>  |  |  ├7 Text Button [LEAF] <br>  |  |  ├8 [Merged-vca]    <br>  |  |  |  ├9 Text [LEAF] <br>  |  |  |  ├10 Text [LEAF] <br>  |  |  |  ├11 Text [LEAF] <br>  |  |  |  ├12 Text [LEAF] <br>  |  |  |  ├13 Text [LEAF] <br>  |  |  |  ├14 Text [LEAF] <br>  |  |  |  ├15 Text [LEAF] <br>  |  |  |  ├16 Text [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000185.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.8706804586192001<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>62995<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000186.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000187.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.8907567638706196<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>54624<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├2 Toolbar    <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Icon [LEAF] <br>  |  ├5 Icon [LEAF] <br>  |  ├6 Text [LEAF] <br>  |  ├7 Icon [LEAF] <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000188.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Icon [LEAF] <br>  |  ├3 Icon [LEAF] <br>  |  ├4 Text [LEAF] <br>  |  ├5 Icon [LEAF] <br>  ├6 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000189.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.9203156801284612<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>36486<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000190.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Text [LEAF] <br>  |  ├3 Icon [LEAF] <br>  ├4 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000191.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.924511777961824<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>29399<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000192.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Toolbar    <br>  |  ├2 Image [LEAF] <br>  |  ├3 [Merged-hca]    <br>  |  |  ├4 Icon [LEAF] <br>  |  |  ├5 Icon [LEAF] <br>  |  |  ├6 Icon [LEAF] <br>  |  |  ├7 Text [LEAF] <br>  ├8 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000193.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.937472010845158<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>2807<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Web View    <br>  |  ├2 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000194.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Background Image    <br>  |  ├2 Background Image [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000195.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.9664314768231812<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>1<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>61464<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000196.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000197.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.9718046647811409<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+      <tr>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">id:<br>25303<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">pred:<br>0 ?    <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000198.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">gt:<br>0 [ROOT]    <br>  ├1 Web View [LEAF] <br><br></p>
+        </td>
+        <td halign="center" valign="top">
+          <img src="images/000199.png" style="width:400px">
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">IoU:<br>0.9853370509642514<br></p>
+        </td>
+        <td halign="center" valign="top">
+          <p style="line-height: 1.0; font-family: monospace">edit_distance:<br>0<br></p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

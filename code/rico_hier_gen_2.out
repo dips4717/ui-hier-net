@@ -1,0 +1,11 @@
+Using device: cuda:2
+Object Category: Rico
+Random Seed: 3124256514
+Using dataset: datasets.RicoHierDataset
+is_train: True #examples: 31470 #original: 31470 #permutes: 1
+is_train: False #examples: 10490 #original: 10490 #permutes: 1
+Starting training ...... 
+training run rico_hier_vae_2
+     Time    Epoch     Dataset    Iteration    Progress(%)       LR       BoxLoss   StructLoss   EdgeExists  KLDivLoss   SymLoss    AdjLoss  AnchorLoss  TotalLoss
+ 00:01:19     0/40     training      0/984         0.0%      1.00E-03    10866.91     1990.51       0.04   12857.46
+Saving checkpoint ...... 
