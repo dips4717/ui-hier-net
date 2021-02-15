@@ -4,3 +4,5 @@ partnet_edges/
 stats/
 viz_blender/
 .vscode
+*.out
+www/
