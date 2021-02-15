@@ -340,3 +340,10 @@ def batch_iou(a, b, epsilon=1e-5):
     # RATIO OF AREA OF OVERLAP OVER COMBINED AREA
     iou = area_overlap / (area_combined + epsilon)
     return iou
+
+def mkdir_if_missing(directory):
+    if os.path.exists(directory):
+        pass
+    else:
+        os.mkdirs(directory)
+    
