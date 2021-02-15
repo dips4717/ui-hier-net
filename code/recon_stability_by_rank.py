@@ -74,8 +74,8 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
         objects = []
         stats = Statistics()
         
-        # I = list(range(len(dataset)))
-        # I = sorted(random.sample(I, min(100, len(I))))
+        I = list(range(len(dataset)))
+        I = sorted(random.sample(I, min(100, len(I))))
 
         for i, (uxid, o_gt) in enumerate(tqdm(dataset)):
             if i>200 and 'train' in opt.test_dataset:
@@ -91,7 +91,7 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
             else:
                 z = root_code
             
-            #losses = decoder.structure_recon_loss(z=z, gt_tree=o_gt)    
+            losses = decoder.structure_recon_loss(z=z, gt_tree=o_gt)    
             o = decoder.decode_structure(z=z, max_depth=conf.max_tree_depth)
             # print(o)
             # print('\n\===============================\n\n')
@@ -109,7 +109,6 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
             
             # edit distance
             edit_distance = max(len(b_pred), len(b_gt)) - K
-            
             for pred_ind, gt_ind in enumerate(I):
                 if pred_ind >= len(b_pred) or gt_ind >= len(b_gt): continue
                 c_pred = o.root.children[pred_ind].label
@@ -123,12 +122,8 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
         P.print(stats.to_string(verbose=True))
 
         # HTML visualize
-        if len(objects) < 200:
-            samples = objects
-        else:
-            samples = random.sample(objects, min(200, len(objects)))
-            #samples = sorted(samples, key=lambda x: x[-1])
-    
+        samples = random.sample(objects, min(200, len(objects)))
+        #samples = sorted(samples, key=lambda x: x[-1])
         
         split = 'train' if 'train' in opt.test_dataset else 'val'
         
@@ -151,21 +146,16 @@ eval_conf = parser.parse_args()
 
 # Write here settings for debuging
 eval_conf.category = 'rico'
-eval_conf.exp_name = 'rico_hier_exp_AE_sem_wt_1_nnemb'
+eval_conf.exp_name = 'rico_hier_exp_3'
 eval_conf.semantics = 'rico_plus'
-# eval_conf.test_dataset = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/val_uxid.txt'
-eval_conf.test_dataset = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/mini_test_uxid.txt'
-
+eval_conf.test_dataset = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/val_uxid.txt'
 eval_conf.model_epoch = None
 eval_conf.num_gen = 100
 eval_conf.web_dir = './www'
 
-
 # load train config
 conf = torch.load(os.path.join(eval_conf.model_path, eval_conf.exp_name, 'conf.pth'))
 eval_conf.data_path = conf.data_path
-#fixed_configs = ['semantic_representation']
-eval_conf.semantic_representation = 'nn_embedding'
 
 # merge training and evaluation configurations, giving evaluation parameters precendence
 conf.__dict__.update(eval_conf.__dict__)
@@ -219,6 +209,8 @@ for m in models:
 # set models to evaluation mode
 for m in models:
     m.eval()
+
+
 
 global P
 P = Printer(f'{os.path.join(conf.result_path, conf.exp_name)}/recon.log')

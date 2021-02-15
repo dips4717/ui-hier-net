@@ -28,6 +28,8 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import torch.utils.data as data
+from PIL import Image
+
 
 from moka import *
 
@@ -361,7 +363,9 @@ class Hierarchy(object):
         cls.SEM2CHILDREN = {sem: [cls.SEMANTICS[ci] for ci in cids] for sem, cids in cls.SEM2CIDS.items()}
         
         #Get the name of non leaf UI components
-        cls.non_leaf_sem_names = ['Toolbar', 'Drawer', 'Bottom Navigation' , 'Modal', 'Button Bar', 'Date Picker', '[Merged-vca]',  '[Merged-hca]'  ]
+        cls.non_leaf_sem_names = ['Toolbar', 'Drawer', 'Bottom Navigation' , \
+                                  'Modal', 'Button Bar', 'Date Picker', '[Merged-vca]',  \
+                                  'Multi-Tab',   '[Merged-hca]' , 'List Item' ]
         
     
 
@@ -895,6 +899,8 @@ class Hierarchy(object):
 
         self.plot_(canvas, palette, **kwargs)
         return canvas
+    
+    
 
 
     def legend(self):
@@ -1247,7 +1253,18 @@ class Rico(object):
 
     def get_semantic_image_path(self, uxid):
         return f'{self.RICO_ROOT}/semantic_annotations/{uxid}.png'
-
+    
+    def plot_semantic_ui(self, uxid):
+         sui = self.get_semantic_image_path(uxid)
+         sui = Image.open(sui).convert('RGB')
+         fig,ax = plt.figure()
+         return ax.imshow(sui)
+        
+         
+         
+         
+         
+         
     def get_hierarchy(self, uxid, layout=False):
         if not layout:
             if self.is_cached and uxid in self._hier_cache:
