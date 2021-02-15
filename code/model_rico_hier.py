@@ -573,7 +573,10 @@ class RecursiveDecoder(nn.Module):
             raise ValueError('Node decoding does not support batch_size > 1.')
 
         is_leaf_logit = self.leaf_classifier(node_latent)
-        node_is_leaf = is_leaf_logit.item() > 0
+        print(full_label, 'is_leaf: ',is_leaf)
+        # node_is_leaf = is_leaf_logit.item() > 0
+        node_is_leaf = torch.sigmoid(is_leaf_logit).item() > 0.4
+
 
         # use maximum depth to avoid potential infinite recursion
         if max_depth < 1:
@@ -582,13 +585,15 @@ class RecursiveDecoder(nn.Module):
         # decode the current part box
         box = self.box_decoder(node_latent)
 
-        if node_is_leaf and is_leaf:
-        # if node_is_leaf or is_leaf:    
-            #ret = Tree.Node(is_leaf=True, full_label=full_label, label=full_label.split('/')[-1])
+        if is_leaf:
+            #if node_is_leaf:
+            # if node_is_leaf or is_leaf:    
+                #ret = Tree.Node(is_leaf=True, full_label=full_label, label=full_label.split('/')[-1])
             ret = Node(label = full_label)
             #ret.set_from_box_quat(box.view(-1))
             ret.set_center_scale(box.view(-1))
             return ret
+        
         else:
             #child_feats, child_sem_logits, child_exists_logit, edge_exists_logits = \
             #        self.child_decoder(node_latent)
