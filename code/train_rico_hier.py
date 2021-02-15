@@ -90,10 +90,16 @@ def train(conf):
     optimizer_names = ['encoder', 'decoder']
 
     # learning rate scheduler
-    encoder_scheduler = torch.optim.lr_scheduler.StepLR(encoder_opt, \
-            step_size=conf.lr_decay_every, gamma=conf.lr_decay_by)
-    decoder_scheduler = torch.optim.lr_scheduler.StepLR(decoder_opt, \
-            step_size=conf.lr_decay_every, gamma=conf.lr_decay_by)
+    if conf.scheduler == 'StepLR':
+        encoder_scheduler = torch.optim.lr_scheduler.StepLR(encoder_opt, \
+                step_size=conf.lr_decay_every, gamma=conf.lr_decay_by)
+        decoder_scheduler = torch.optim.lr_scheduler.StepLR(decoder_opt, \
+                step_size=conf.lr_decay_every, gamma=conf.lr_decay_by)
+    elif conf.scheduler == 'ReduceLROnPlateau':
+        encoder_scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(encoder_opt, mode='min', \
+                factor=conf.lr_decay_factor, patience=2)
+        decoder_scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(decoder_opt, mode='min',\
+                factor=conf.lr_decay_factor, patience=2)
 
     # create training and validation datasets and data loaders
     
@@ -147,9 +153,10 @@ def train(conf):
     # train for every epoch
     for epoch in range(conf.epochs):
         global train_stats
-        global val_stats
+        global valdt_stats
+        
         train_stats = Statistics()
-        val_stats = Statistics()
+        valdt_stats = Statistics()
 
         if not conf.no_console_log:
             print(f'training run {conf.exp_name}')
@@ -180,7 +187,6 @@ def train(conf):
                 m.train()
 
             # forward pass (including logging)
-
             total_loss = forward(
                 batch=batch, data_features=data_features, encoder=encoder, decoder=decoder, device=device, conf=conf,
                 is_valdt=False, step=train_step, epoch=epoch, batch_ind=train_batch_ind, num_batch=train_num_batch, start_time=start_time,
@@ -194,6 +200,7 @@ def train(conf):
             encoder_opt.step()
             decoder_opt.step()
 
+            train_stats.add('total_loss', float(total_loss.item()), len(batch[0]) )
             del total_loss
 
             # save checkpoint
@@ -210,31 +217,63 @@ def train(conf):
                     last_checkpoint_step = train_step
 
             # validate one batch
-            while valdt_fraction_done <= train_fraction_done and valdt_batch_ind+1 < valdt_num_batch:
-                valdt_batch_ind, batch = next(valdt_batches)
+            # while valdt_fraction_done <= train_fraction_done and valdt_batch_ind+1 < valdt_num_batch:
+            #     valdt_batch_ind, batch = next(valdt_batches)
 
-                valdt_fraction_done = (valdt_batch_ind + 1) / valdt_num_batch
-                valdt_step = (epoch + valdt_fraction_done) * train_num_batch - 1
+            #     valdt_fraction_done = (valdt_batch_ind + 1) / valdt_num_batch
+            #     valdt_step = (epoch + valdt_fraction_done) * train_num_batch - 1
 
+            #     log_console = not conf.no_console_log and (last_valdt_console_log_step is None or \
+            #             valdt_step - last_valdt_console_log_step >= conf.console_log_interval)
+            #     if log_console:
+            #         last_valdt_console_log_step = valdt_step
+
+            #     # set models to evaluation mode
+            #     for m in models:
+            #         m.eval()
+
+            #     with torch.no_grad():
+            #         # forward pass (including logging)
+            #         __ = forward(
+            #             batch=batch, data_features=data_features, encoder=encoder, decoder=decoder, device=device, conf=conf,
+            #             is_valdt=True, step=valdt_step, epoch=epoch, batch_ind=valdt_batch_ind, num_batch=valdt_num_batch, start_time=start_time,
+            #             log_console=log_console, log_tb=not conf.no_tb_log, tb_writer=valdt_writer,
+            #             lr=encoder_opt.param_groups[0]['lr'], flog=flog)
+
+        # Validate in every batch 
+        with torch.no_grad():
+            for valdt_batch_ind , batch in valdt_batches:
+                valdt_fraction_done = (valdt_batch_ind + 1) / val_num_batch
+                valdt_step = epoch * valdt_num_batch + valdt_batch_ind
+    
                 log_console = not conf.no_console_log and (last_valdt_console_log_step is None or \
                         valdt_step - last_valdt_console_log_step >= conf.console_log_interval)
                 if log_console:
                     last_valdt_console_log_step = valdt_step
-
-                # set models to evaluation mode
+    
+                # set models to training mode
                 for m in models:
                     m.eval()
+    
+                # forward pass (including logging)
+    
+                total_loss = forward(
+                    batch=batch, data_features=data_features, encoder=encoder, decoder=decoder, device=device, conf=conf,
+                    is_valdt=True, step=valdt_step, epoch=epoch, batch_ind=valdt_batch_ind, num_batch=valdt_num_batch, start_time=start_time,
+                    log_console=log_console, log_tb=not conf.no_tb_log, tb_writer=valdt_writer,
+                    lr=encoder_opt.param_groups[0]['lr'], flog=flog)
 
-                with torch.no_grad():
-                    # forward pass (including logging)
-                    __ = forward(
-                        batch=batch, data_features=data_features, encoder=encoder, decoder=decoder, device=device, conf=conf,
-                        is_valdt=True, step=valdt_step, epoch=epoch, batch_ind=valdt_batch_ind, num_batch=valdt_num_batch, start_time=start_time,
-                        log_console=log_console, log_tb=not conf.no_tb_log, tb_writer=valdt_writer,
-                        lr=encoder_opt.param_groups[0]['lr'], flog=flog)
+                valdt_stats.add('total_loss', float(total_loss.item()), len(batch[0]) ) 
 
-        encoder_scheduler.step()
-        decoder_scheduler.step()
+                    
+        valid_loss = valdt_stats.mean(conf.metric)    
+        
+        if conf.scheduler == 'StepLR':
+            encoder_scheduler.step()
+            decoder_scheduler.step()
+        elif conf.scheduler == 'ReduceLROnPlateau':
+            encoder_scheduler.step(valid_loss)
+            decoder_scheduler.step(valid_loss)
             #print(f'1 complete batch update, Elsped time: {time.time()-tic_compl_batch:.2f}')
     
     # save the final models
@@ -287,7 +326,7 @@ def forward(batch, data_features, encoder, decoder, device, conf,
 
         # decode root code to get reconstruction loss
         obj_losses = decoder.structure_recon_loss(z=root_code, gt_tree=obj)
-        toc_obj_encdec = time.time() - tic_obj 
+        # toc_obj_encdec = time.time() - tic_obj 
         # print(f'Time elapsed for 1 object encoding + decoding = {toc_obj_encdec} sec')
 
         

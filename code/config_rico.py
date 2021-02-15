@@ -59,7 +59,8 @@ def add_train_vae_args(parser):
     parser.add_argument('--lr_decay_patience', type=int, default=10, help='ReduceLROnPlateau reduce LR after X *epochs* of valid loss not decreasing')
     parser.add_argument('--non_variational', action='store_true', default=False, help='make the variational autoencoder non-variational')
     parser.add_argument('--non_probabilistic', action='store_true', default=False, help='make the variational autoencoder non-variational/non-probabilistic')
-
+    parser.add_argument('--scheduler', type=str, default='StepLR',  choices =['StepLR','ReduceLROnPlateau'], help='type of the learning rate scheduler')
+    parser.add_argument('--metric', type=str, default='total_loss', help='Select the best validated model based on this loss metric')
     parser.add_argument('--permutations', type=int, default=1, help='No permute when permutations == 1')
 
     # loss weights to train
@@ -82,7 +83,7 @@ def add_train_vae_args(parser):
     parser.add_argument('--no_tb_log', action='store_true', default=False)
     parser.add_argument('--no_console_log', action='store_true', default=False)
     parser.add_argument('--console_log_interval', type=int, default=30, help='number of optimization steps beween console log prints')
-    parser.add_argument('--checkpoint_interval', type=int, default=500, help='number of optimization steps beween checkpoints')
+    parser.add_argument('--checkpoint_interval', type=int, default=5000, help='number of optimization steps beween checkpoints')
     parser.add_argument('--web_dir', type=str, default='./www', help='base dir for html visualization')
 
     # load pretrained model (for pc exps)
