@@ -4,5 +4,6 @@ partnet_edges/
 stats/
 viz_blender/
 .vscode
-code/*.out
-code/www/*
+**/*.out
+**/www*
+**/www_minidataset
