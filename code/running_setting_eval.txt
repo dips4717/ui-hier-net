@@ -1,0 +1,6 @@
+python reconstruct_hier.py --exp_name 'rico_hier_exp_AE_sem_wt_1_nnemb' 
+
+python reconstruct_hier.py --exp_name 'rico_hier_exp_AE_sem_wt_1_nnemb'  --test_dataset 'val_uxid.txt'
+
+python reconstruct_hier.py --exp_name 'rico_hier_exp_AE_sem_wt_1_nnemb'  --test_dataset 'val_uxid.txt'
+

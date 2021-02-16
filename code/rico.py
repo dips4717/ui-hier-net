@@ -238,7 +238,8 @@ class Hierarchy(object):
 
         return node
     
-    def flatten(self, node):
+    def flatten(self, node =None):
+        if node is None: node=self.root
         for idx, child_node in enumerate(node.children):
             child_node.level = 1 
             if child_node not in self.root.children:

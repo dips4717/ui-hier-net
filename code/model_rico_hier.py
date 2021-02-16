@@ -364,10 +364,6 @@ class GNNChildDecoder(nn.Module):
         edge_indices = torch.tensor(edge_indices, device=device, dtype=torch.long).view(-1,2)
         # edge_indices = torch.tensor(edge_indices, dtype=torch.long).view(-1,2)
 
-
-
-
-
         # For Structurenet to predict the edges features / edge existence prediction 
         # Removed for RICO: We do not predict edges and edges features and its type for now. 
         # Negate this for now. In RICO, we assume that we have fully-connected graph. 
@@ -573,7 +569,7 @@ class RecursiveDecoder(nn.Module):
             raise ValueError('Node decoding does not support batch_size > 1.')
 
         is_leaf_logit = self.leaf_classifier(node_latent)
-        print(full_label, 'is_leaf: ',is_leaf)
+        #print(full_label, 'is_leaf: ',is_leaf)
         # node_is_leaf = is_leaf_logit.item() > 0
         node_is_leaf = torch.sigmoid(is_leaf_logit).item() > 0.4
 

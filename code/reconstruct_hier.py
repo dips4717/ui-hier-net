@@ -70,7 +70,6 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
     device = torch.device(conf.device)
     
     with torch.no_grad():
-
         objects = []
         stats = Statistics()
         
@@ -96,12 +95,16 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
             # print(o)
             # print('\n\===============================\n\n')
             
-            o.root.children = sorted(o.root.children, key=lambda x: x.box[0])
-            o.root.children = sorted(o.root.children, key=lambda x: int(x.label != 'Toolbar'))
+            o_flat, o_gt_flat  = o.copy() , o_gt.copy()
+            o_flat.flatten()
+            o_gt_flat.flatten()
+
+            o_flat.root.children = sorted(o_flat.root.children, key=lambda x: x.box[0])
+            #o.root.children = sorted(o.root.children, key=lambda x: int(x.label != 'Toolbar'))
 
             # IoU
-            b_pred = np.array([x.box for x in o.root.children])
-            b_gt = np.array([x.box for x in o_gt.root.children])
+            b_pred = np.array([x.box for x in o_flat.root.children])
+            b_gt = np.array([x.box for x in o_gt_flat.root.children])
             IoU, I = max_linear_assignment(b_pred, b_gt, batch_iou)
             K = min(len(b_pred), len(b_gt))
             IoU = IoU / K if K > 0 else 0
@@ -109,11 +112,10 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
             
             # edit distance
             edit_distance = max(len(b_pred), len(b_gt)) - K
-            
             for pred_ind, gt_ind in enumerate(I):
                 if pred_ind >= len(b_pred) or gt_ind >= len(b_gt): continue
-                c_pred = o.root.children[pred_ind].label
-                c_gt = o_gt.root.children[gt_ind].label
+                c_pred = o_flat.root.children[pred_ind].label
+                c_gt = o_gt_flat.root.children[gt_ind].label
                 if c_pred != c_gt: edit_distance += 1
             stats.add('edit_distance', edit_distance)
 
@@ -133,9 +135,9 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
         split = 'train' if 'train' in opt.test_dataset else 'val'
         
         if opt.model_epoch is None:
-            html = HTML(f'/recon_{split}@{expname}', expname, base_url=web_dir, inverted=True, overwrite=True, refresh=int(refresh))
+            html = HTML(f'/recon_{split}@{expname}/recon_{split}@{expname}_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}', expname, base_url=web_dir, inverted=True, overwrite=True, refresh=int(refresh))
         else:
-            html = HTML(f'/recon_{split}@{expname}_epoch_{opt.model_epoch}', expname, base_url=web_dir, inverted=True, overwrite=True, refresh=int(refresh))
+            html = HTML(f'/recon_{split}@{expname}_epoch_{opt.model_epoch}/recon_{split}@{expname}_epoch_{opt.model_epoch}_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}', expname, base_url=web_dir, inverted=True, overwrite=True, refresh=int(refresh))
         html.add_table().add([vis_fn(*_) for _ in tqdm(samples)])
         html.save()
 
@@ -143,29 +145,28 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
         if show: html.show(domain)
         else: P.print(html.url(domain))
 
-        return stats
+        #return stats
 
 parser = argparse.ArgumentParser()
 parser = add_eval_args(parser)
 eval_conf = parser.parse_args() 
 
 # Write here settings for debuging
-eval_conf.category = 'rico'
 eval_conf.exp_name = 'rico_hier_exp_AE_sem_wt_1_nnemb'
-eval_conf.semantics = 'rico_plus'
-# eval_conf.test_dataset = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/val_uxid.txt'
-eval_conf.test_dataset = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/mini_test_uxid.txt'
+base_dataset_path = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/'
+eval_conf.test_dataset = base_dataset_path + eval_conf.test_dataset
 
 eval_conf.model_epoch = None
 eval_conf.num_gen = 100
-eval_conf.web_dir = './www'
-
+if 'mini' in eval_conf.test_dataset:
+    eval_conf.web_dir = './www_minidataset'
+else:
+    eval_conf.web_dir = './www'
 
 # load train config
 conf = torch.load(os.path.join(eval_conf.model_path, eval_conf.exp_name, 'conf.pth'))
 eval_conf.data_path = conf.data_path
-#fixed_configs = ['semantic_representation']
-eval_conf.semantic_representation = 'nn_embedding'
+
 
 # merge training and evaluation configurations, giving evaluation parameters precendence
 conf.__dict__.update(eval_conf.__dict__)
@@ -184,14 +185,14 @@ device = torch.device(conf.device)
 print(f'Using device: {conf.device}')
 
 # check if eval results already exist. If so, delete it. 
-if os.path.exists(os.path.join(conf.result_path, conf.exp_name)):
-    response = input('Eval results for "%s" already exists, overwrite? (y/n) ' % (conf.exp_name))
-    if response != 'y':
-        sys.exit()
-    shutil.rmtree(os.path.join(conf.result_path, conf.exp_name))
+# if os.path.exists(os.path.join(conf.result_path, conf.exp_name)):
+#     response = input('Eval results for "%s" already exists, overwrite? (y/n) ' % (conf.exp_name))
+#     if response != 'y':
+#         sys.exit()
+#     shutil.rmtree(os.path.join(conf.result_path, conf.exp_name))
 
 # create a new directory to store eval results
-os.makedirs(os.path.join(conf.result_path, conf.exp_name))
+mkdir_if_missing(os.path.join(conf.result_path, conf.exp_name))
 result_dir = os.path.join(conf.result_path, conf.exp_name)
 
 # create models
@@ -221,7 +222,7 @@ for m in models:
     m.eval()
 
 global P
-P = Printer(f'{os.path.join(conf.result_path, conf.exp_name)}/recon.log')
+P = Printer(f'{os.path.join(conf.result_path, conf.exp_name)}/recon_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}.log')
 
 
 # create dataset and data loader
