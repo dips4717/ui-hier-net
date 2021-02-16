@@ -243,7 +243,7 @@ def train(conf):
         # Validate in every batch 
         with torch.no_grad():
             for valdt_batch_ind , batch in valdt_batches:
-                valdt_fraction_done = (valdt_batch_ind + 1) / val_num_batch
+                valdt_fraction_done = (valdt_batch_ind + 1) / valdt_num_batch
                 valdt_step = epoch * valdt_num_batch + valdt_batch_ind
     
                 log_console = not conf.no_console_log and (last_valdt_console_log_step is None or \
