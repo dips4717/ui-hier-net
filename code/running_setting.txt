@@ -43,3 +43,48 @@ nohup python train_rico_hier.py \
 --loss_weight_semantic 1.0 \
 --scheduler 'ReduceLROnPlateau'\
 > rico_hier_AE_SemWt1_nnemb_SchRonPlat_bs128.out &
+
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc' \
+--non_probabilistic \
+--encode_child_count \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR'\
+> rico_hier_AE_SemWt1_nnemb_childCountEnc.out &
+
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc_interBoxEnc' \
+--device 'cuda:1' \
+--non_probabilistic \
+--encode_child_count \
+--intermediate_box_encoding \
+--semantic_representation 'nn_embedding' \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR'\
+> rico_hier_AE_SemWt1_nnemb_childCountEnc_interBoxEnc.out &
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc_interBoxEnc_bs128' \
+--device 'cuda:1' \
+--batch_size 128 \
+--non_probabilistic \
+--encode_child_count \
+--intermediate_box_encoding \
+--semantic_representation 'nn_embedding' \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR'\
+> rico_hier_AE_SemWt1_nnemb_childCountEnc_interBoxEnc_bs128.out &
+
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN' \
+--device 'cuda:1' \
+--non_probabilistic \
+--non_gnn
+--semantic_representation 'nn_embedding' \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR'\
+> rico_hier_AE_SemWt1_nnemb_nonGNN.out &

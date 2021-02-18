@@ -59,6 +59,43 @@ class BoxEncoder(nn.Module):
         box_vector = torch.relu(self.encoder(box_input))
         return box_vector
 
+class MLPChildEncoder(nn.Module):
+
+    def __init__(self, config, node_feat_size, node_symmetric_type):
+        super(MLPChildEncoder, self).__init__()
+
+        self.conf = config
+        self.node_symmetric_type = node_symmetric_type
+
+        if self.conf.semantic_representation=='nn_embedding':
+            self.child_op = nn.Linear(node_feat_size + self.conf.hidden_size, self.conf.hidden_size)
+        else:
+            self.child_op = nn.Linear(node_feat_size + Hierarchy.NUM_SEMANTICS, self.conf.hidden_size)
+
+    def forward(self, child_feats, child_exists):
+        batch_size = child_feats.shape[0]
+        max_childs = child_feats.shape[1]
+
+        if batch_size != 1:
+            raise ValueError('Currently only a single batch is supported.')
+
+        # perform MLP for child features
+        child_feats = torch.relu(self.child_op(child_feats))
+        hidden_size = child_feats.size(-1)
+
+        # zero out non-existent children
+        child_feats = child_feats * child_exists
+        child_feats = child_feats.view(1, max_childs, -1)
+
+        if self.node_symmetric_type == 'max':
+            parent_feat = child_feats.max(dim=1)[0]
+        elif self.node_symmetric_type == 'sum':
+            parent_feat= child_feats.sum(dim=1)
+        elif self.node_symmetric_type == 'avg':
+            parent_feat = child_feats.sum(dim=1) / child_exists.sum(dim=1)
+        else:
+            raise ValueError(f'Unknown node symmetric type: {self.node_symmetric_type}')
+        return parent_feat
 
 class GNNChildEncoder(nn.Module):
 
@@ -172,17 +209,23 @@ class RecursiveEncoder(nn.Module):
     def __init__(self, config, variational=False, probabilistic=True):
         super(RecursiveEncoder, self).__init__()
         self.conf = config
-
+        self.non_gnn = config.non_gnn
         self.box_encoder = BoxEncoder(feature_size=config.feature_size, box_dim=4)
-
-        self.child_encoder = GNNChildEncoder(
-            config=config,
-            node_feat_size=config.feature_size,
-            hidden_size=config.hidden_size,
-            node_symmetric_type=config.node_symmetric_type,
-            edge_symmetric_type=config.edge_symmetric_type,
-            num_iterations=config.num_gnn_iterations,
-            edge_type_num=len(config.edge_types))
+        
+        if not config.non_gnn:
+            self.child_encoder = GNNChildEncoder(
+                config=config,
+                node_feat_size=config.feature_size,
+                hidden_size=config.hidden_size,
+                node_symmetric_type=config.node_symmetric_type,
+                edge_symmetric_type=config.edge_symmetric_type,
+                num_iterations=config.num_gnn_iterations,
+                edge_type_num=len(config.edge_types))
+        else:
+            self.child_encoder = MLPChildEncoder(
+                config=config,
+                node_feat_size=config.feature_size,
+                node_symmetric_type=config.node_symmetric_type)
 
         if variational:
             self.sample_encoder = Sampler(feature_size=config.feature_size, \
@@ -232,10 +275,11 @@ class RecursiveEncoder(nn.Module):
             
             #return self.child_encoder(child_feats, child_exists, edge_type_onehot, edge_indices)
 
-            edge_feats, edge_indices = node.get_edges(device=child_feats.device)
-            
-            return self.child_encoder(child_feats, child_exists, edge_feats, edge_indices)
-
+            if not self.non_gnn:
+                edge_feats, edge_indices = node.get_edges(device=child_feats.device)
+                return self.child_encoder(child_feats, child_exists, edge_feats, edge_indices)
+            else:
+                return self.child_encoder(child_feats, child_exists)
 
     def encode_structure(self, obj):
         root_latent = self.encode_node(obj.root)
@@ -317,7 +361,6 @@ class GNNChildDecoder(nn.Module):
         self.mlp_parent = nn.Linear(node_feat_size, hidden_size*max_child_num)
         self.mlp_exists = nn.Linear(hidden_size, 1)
         self.mlp_sem = nn.Linear(hidden_size, Hierarchy.NUM_SEMANTICS)
-        self.mlp_child = nn.Linear(hidden_size, node_feat_size)
         self.mlp_edge_latent = nn.Linear(hidden_size*2, hidden_size)
 
         self.mlp_edge_exists = nn.ModuleList()
@@ -472,6 +515,51 @@ class GNNChildDecoder(nn.Module):
         return child_feats, child_sem_logits, child_exists_logits  #, edge_exists_logits   # N x 10 x 256;  Nx10x58; 1x10x10x4
 
 
+class MLPChildDecoder(nn.Module):
+
+    def __init__(self, node_feat_size, hidden_size, max_child_num):
+        super(MLPChildDecoder, self).__init__()
+
+        self.max_child_num = max_child_num
+        self.hidden_size = hidden_size
+
+        self.mlp_parent = nn.Linear(node_feat_size, hidden_size*max_child_num)
+        self.mlp_exists = nn.Linear(hidden_size, 1)
+        self.mlp_sem = nn.Linear(hidden_size, Hierarchy.NUM_SEMANTICS)
+        self.mlp_child = nn.Linear(hidden_size, node_feat_size)
+        self.mlp_child2 = nn.Linear(hidden_size, node_feat_size)
+
+    def forward(self, parent_feature):
+        batch_size = parent_feature.shape[0]
+        feat_size = parent_feature.shape[1]
+
+        if batch_size != 1:
+            raise ValueError('Only batch size 1 supported for now.')
+
+        parent_feature = torch.relu(self.mlp_parent(parent_feature)) 
+        child_feats = parent_feature.view(batch_size, self.max_child_num, self.hidden_size) # shape [1, 10, 256]
+        
+        # node existence
+        child_exists_logits = self.mlp_exists(child_feats.view(batch_size*self.max_child_num, self.hidden_size))
+        child_exists_logits = child_exists_logits.view(batch_size, self.max_child_num, 1)  #shape torch.Size([1, 10, 1])    
+
+        child_feats = child_feats.view(-1, self.hidden_size)    # torch.Size([10, 768])
+        child_feats = torch.relu(self.mlp_child(child_feats))
+        child_feats = child_feats.view(batch_size, self.max_child_num, self.hidden_size) # shape [1, 10, 256]
+
+        # node semantics
+        child_sem_logits = self.mlp_sem(child_feats.view(-1, self.hidden_size))
+        child_sem_logits = child_sem_logits.view(batch_size, self.max_child_num, Hierarchy.NUM_SEMANTICS)
+
+        # node features
+        child_feats = self.mlp_child2(child_feats.view(-1, self.hidden_size))
+        child_feats = child_feats.view(batch_size, self.max_child_num, feat_size)
+        child_feats = torch.relu(child_feats)
+        
+        return child_feats, child_sem_logits, child_exists_logits  #, edge_exists_logits   # N x 10 x 256;  Nx10x58; 1x10x10x4
+
+
+
 class RecursiveDecoder(nn.Module):
 
     def __init__(self, config):
@@ -481,13 +569,21 @@ class RecursiveDecoder(nn.Module):
 
         self.box_decoder = BoxDecoder2D(config.feature_size, config.hidden_size)
 
-        self.child_decoder = GNNChildDecoder(
-            node_feat_size=config.feature_size,
-            hidden_size=config.hidden_size,
-            max_child_num=config.max_child_num,
-            edge_symmetric_type=config.edge_symmetric_type,
-            num_iterations=config.num_dec_gnn_iterations,
-            edge_type_num=len(config.edge_types))
+        if not config.non_gnn:
+            self.child_decoder = GNNChildDecoder(
+                node_feat_size=config.feature_size,
+                hidden_size=config.hidden_size,
+                max_child_num=config.max_child_num,
+                edge_symmetric_type=config.edge_symmetric_type,
+                num_iterations=config.num_dec_gnn_iterations,
+                edge_type_num=len(config.edge_types))
+        else:
+            self.child_decoder = MLPChildDecoder(
+                node_feat_size=config.feature_size,
+                hidden_size=config.hidden_size,
+                max_child_num=config.max_child_num)
+
+
 
         self.sample_decoder = SampleDecoder(config.feature_size, config.hidden_size)
 

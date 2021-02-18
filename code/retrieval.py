@@ -96,7 +96,7 @@ def main():
     eval_conf.category = 'rico'
     eval_conf.exp_name = 'rico_hier_exp_AE_sem_wt_1_nnemb'
     eval_conf.semantics = 'rico_plus'
-    eval_conf.test_dataset = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/test_uxid.txt'
+    eval_conf.test_dataset = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/train_uxid.txt'
     eval_conf.model_epoch = None
     eval_conf.num_gen = 100
     eval_conf.web_dir = './www'
@@ -122,11 +122,11 @@ def main():
     print(f'Using device: {conf.device}')
     
     # check if eval results already exist. If so, delete it. 
-    if os.path.exists(os.path.join(conf.result_path, conf.exp_name)):
-        response = input('Eval results for "%s" already exists, overwrite? (y/n) ' % (conf.exp_name))
-        if response != 'y':
-            sys.exit()
-        shutil.rmtree(os.path.join(conf.result_path, conf.exp_name))
+    # if os.path.exists(os.path.join(conf.result_path, conf.exp_name)):
+    #     response = input('Eval results for "%s" already exists, overwrite? (y/n) ' % (conf.exp_name))
+    #     if response != 'y':
+    #         sys.exit()
+    #     shutil.rmtree(os.path.join(conf.result_path, conf.exp_name))
     
     # create a new directory to store eval results
     # result_dir = os.path.join(conf.result_path, conf.exp_name)

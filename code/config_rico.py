@@ -47,6 +47,8 @@ def add_train_vae_args(parser):
     parser.add_argument('--num_gnn_iterations', type=int, default=2, help='number of message passing iterations for the GNN encoding')
     parser.add_argument('--num_dec_gnn_iterations', type=int, default=2, help='number of message passing iterations for the GNN decoding')
     parser.add_argument('--model_version', type=str, default='model', help='model file name')
+    parser.add_argument('--non_gnn', action='store_true', default=False, help='if True, model does not use message passing between children in Encoder and Decoder, ie. no GNN module.')
+
 
     # training parameters
     parser.add_argument('--epochs', type=int, default=40)
@@ -61,8 +63,7 @@ def add_train_vae_args(parser):
     parser.add_argument('--non_probabilistic', action='store_true', default=False, help='make the variational autoencoder non-variational/non-probabilistic')
     parser.add_argument('--scheduler', type=str, default='StepLR',  choices =['StepLR','ReduceLROnPlateau'], help='type of the learning rate scheduler')
     parser.add_argument('--metric', type=str, default='total_loss', help='Select the best validated model based on this loss metric')
-    parser.add_argument('--permutations', type=int, default=1, help='No permute when permutations == 1')
-
+    parser.add_argument('--permutations', type=int, default=1, help='No permute when permutations == 1')    
     # loss weights to train
     parser.add_argument('--loss_weight_geo', type=float, default=2.0, help='weight for the geo recon loss')
     parser.add_argument('--loss_weight_latent', type=float, default=20.0, help='weight for the latent recon loss')
@@ -89,7 +90,6 @@ def add_train_vae_args(parser):
     # load pretrained model (for pc exps)
     parser.add_argument('--part_pc_exp_name', type=str, help='resume model exp name')
     parser.add_argument('--part_pc_model_epoch', type=int, help='resume model epoch')
-
     return parser
 
 def add_result_args(parser):
