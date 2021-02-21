@@ -7,3 +7,4 @@ viz_blender/
 **/*.out
 **/www*
 **/www_minidataset
+**/running*.txt
