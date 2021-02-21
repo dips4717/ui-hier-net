@@ -122,6 +122,9 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
             objects.append([uxid, o, o_gt, z, edit_distance, IoU])
 
         # statistics
+        P.print('\n Expname: ', opt.expname)
+        P.print('\n isleaf_threshold: ', opt.is_leaf_thres)
+        P.print('\n isexist_threshold: ', opt.is_exists_thres)
         P.print(stats.to_string(verbose=True))
 
         # HTML visualize
@@ -134,10 +137,12 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
         
         split = 'train' if 'train' in opt.test_dataset else 'val'
         
+
+
         if opt.model_epoch is None:
-            html = HTML(f'/recon_{split}@{expname}/recon_{split}@{expname}_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}', expname, base_url=web_dir, inverted=True, overwrite=True, refresh=int(refresh))
+            html = HTML(f'/recon_{split}@{expname}_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}', expname, base_url=web_dir, inverted=True, overwrite=True, refresh=int(refresh))
         else:
-            html = HTML(f'/recon_{split}@{expname}_epoch_{opt.model_epoch}/recon_{split}@{expname}_epoch_{opt.model_epoch}_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}', expname, base_url=web_dir, inverted=True, overwrite=True, refresh=int(refresh))
+            html = HTML(f'/recon_{split}@{expname}_epoch_{opt.model_epoch}_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}', expname, base_url=web_dir, inverted=True, overwrite=True, refresh=int(refresh))
         html.add_table().add([vis_fn(*_) for _ in tqdm(samples)])
         html.save()
 
@@ -154,7 +159,7 @@ eval_conf = parser.parse_args()
 # Write here settings for debuging
 eval_conf.exp_name = 'rico_hier_exp_AE_sem_wt_1_nnemb'
 base_dataset_path = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/'
-eval_conf.test_dataset = base_dataset_path + eval_conf.test_dataset
+eval_conf.test_dataset = base_dataset_path + eval_conf.split + '_uxid.txt'
 
 eval_conf.model_epoch = None
 eval_conf.num_gen = 100
@@ -222,7 +227,7 @@ for m in models:
     m.eval()
 
 global P
-P = Printer(f'{os.path.join(conf.result_path, conf.exp_name)}/recon_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}.log')
+P = Printer(f'{os.path.join(conf.result_path, conf.exp_name)}/{conf.split}recon_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}.log')
 
 
 # create dataset and data loader

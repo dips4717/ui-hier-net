@@ -109,6 +109,6 @@ def add_eval_args(parser):
     parser.add_argument('--test_dataset', type=str, default='mini_test_uxid.txt', help='file name for the list of object names for testing')
     parser.add_argument('--is_leaf_thres', type=float, default=0.5, help ='threshold on sigmoid(logit) for deciding is_leaf')
     parser.add_argument('--is_exists_thres', type=float, default=0.5, help ='threshold on sigmoid(exists) for deciding if child node exists')
-
+    parser.add_argument('--split', type=str, default='val', help ='split set to perform the reconstruction evaluation')
     return  parser
 
