@@ -27,6 +27,8 @@ import utils
 import time 
 from moka import *
 
+torch.backends.cudnn.benchmark = True
+
 # Use 1-4 CPU threads to train.
 # Don't use too many CPU threads, which will slow down the training.
 torch.set_num_threads(2)

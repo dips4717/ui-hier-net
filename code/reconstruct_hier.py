@@ -157,7 +157,11 @@ parser = add_eval_args(parser)
 eval_conf = parser.parse_args() 
 
 # Write here settings for debuging
-eval_conf.exp_name = 'rico_hier_exp_AE_sem_wt_1_nnemb'
+#eval_conf.exp_name = 'rico_hier_exp_AE_sem_wt_1_nnemb'
+
+print('\nExp_name: {eval_conf.exp_name}')
+print('Split: {eval_conf.split}\n')
+
 base_dataset_path = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/'
 eval_conf.test_dataset = base_dataset_path + eval_conf.split + '_uxid.txt'
 
