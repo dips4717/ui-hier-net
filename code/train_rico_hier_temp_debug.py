@@ -428,6 +428,8 @@ if __name__ == '__main__':
     config.model_version = 'model_rico_hier' 
     config.extract_hier = True
     config.loss_for_box = 'L2'
+    config.non_probabilistic =True
+    config.encode_child_count = True
     #config.exp_name = 'rico_hier_timing'
 
     # Tree.load_category_info(config.category)

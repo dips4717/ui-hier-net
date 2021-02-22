@@ -192,7 +192,16 @@ class RecursiveEncoder(nn.Module):
             self.sem_embeds = nn.Embedding(Hierarchy.NUM_SEMANTICS, self.conf.hidden_size)  # 2 words in vocab, 5 dimensional embeddings
             print('\n\n Using nn.embedding for semantic representation\n\n')
             #lookup_tensor = torch.tensor([word_to_ix["hello"]], dtype=torch.long)
-            #llo_embed = embeds(lookup_tensor)            
+            #llo_embed = embeds(lookup_tensor)   
+            # 
+        if self.conf.intermediate_box_encoding:
+            self.intermediate_box_mlp = nn.Linear(2*config.feature_size, config.feature_size)
+            print('\n\n Encoding the intermediate box information \n\n')
+        
+        if self.conf.encode_child_count:
+            self.child_count_emb = nn.Embedding(self.conf.max_child_num+1, self.conf.hidden_size)
+            self.child_count_mlp = nn.Linear(config.feature_size + self.conf.hidden_size, config.feature_size )
+            print('\n\n Encoding child count information \n\n')
 
     def encode_node(self, node):
         if node.is_leaf:
@@ -234,7 +243,21 @@ class RecursiveEncoder(nn.Module):
 
             edge_feats, edge_indices = node.get_edges(device=child_feats.device)
             
-            return self.child_encoder(child_feats, child_exists, edge_feats, edge_indices)
+            parent_feat = self.child_encoder(child_feats, child_exists, edge_feats, edge_indices)
+
+            if self.conf.intermediate_box_encoding:
+                intermediate_box_enc = self.box_encoder(node.get_center_scale().view(1,-1))
+                parent_feat = torch.cat([intermediate_box_enc, parent_feat], dim=1)
+                parent_feat = torch.relu(self.intermediate_box_mlp(parent_feat))
+            
+            if self.conf.encode_child_count:
+                child_count = torch.tensor([len(node.children)], dtype=torch.long).to(node.device)
+                child_count_embed = self.child_count_emb(child_count)
+                parent_feat = torch.cat([parent_feat, child_count_embed], dim=1)
+                parent_feat = torch.relu(self.child_count_mlp(parent_feat))
+
+            return parent_feat    
+            #return self.child_encoder(child_feats, child_exists, edge_feats, edge_indices)
 
 
     def encode_structure(self, obj):
@@ -500,11 +523,15 @@ class RecursiveDecoder(nn.Module):
         self.bceLoss = nn.BCEWithLogitsLoss(reduction='none')
         self.chamferLoss = ChamferDistance()
         self.semCELoss = nn.CrossEntropyLoss(reduction='none')
+        self.childcountCELoss = nn.CrossEntropyLoss(reduction='none')
 
         self.register_buffer('unit_cube', torch.from_numpy(load_pts('cube.pts')))
         self.register_buffer('anchor', torch.from_numpy(load_pts('anchor.pts')))
         
         self.node_recon_count = 0
+
+        if self.conf.encode_child_count:
+            self.child_count_decoder = nn.Linear(config.feature_size, config.max_child_num+1)
         
     def reset_node_recon_count(self):
         self.node_recon_count = 0
@@ -678,7 +705,8 @@ class RecursiveDecoder(nn.Module):
             #  3. Add the anchor loss as in structurenet. 
             return {'box' : box_loss, 'leaf': is_leaf_loss, 
                     'exists': torch.zeros_like(box_loss), 'semantic': torch.zeros_like(box_loss),
-                    'edge_exists': torch.zeros_like(box_loss)
+                    'edge_exists': torch.zeros_like(box_loss),
+                    'child_count': torch.zeros_like(box_loss)
                     }, box, box
         
         else:
@@ -688,6 +716,11 @@ class RecursiveDecoder(nn.Module):
             child_feats, child_sem_logits, child_exists_logits = \
                     self.child_decoder(node_latent)   #[1, 10, 256],  [1, 10, 58], [1, 10, 1]
 
+            if self.conf.encode_child_count:
+                child_count_logits = self.child_count_decoder(node_latent)
+                child_gt_count = torch.tensor([len(gt_node.children)], dtype=torch.int64, device=gt_node.device)
+                child_count_loss = self.childcountCELoss(child_count_logits, child_gt_count)
+                child_count_loss = child_count_loss.sum()
 
             # generate box prediction for each child
             feature_len = node_latent.size(1)   #256
@@ -753,6 +786,8 @@ class RecursiveDecoder(nn.Module):
             # train the current node to be non-leaf
             is_leaf_logit = self.leaf_classifier(node_latent)
             is_leaf_loss = self.isLeafLossEstimator(is_leaf_logit, is_leaf_logit.new_tensor(gt_node.is_leaf).view(1, -1))
+
+
 
             # train the current node box to gt
             all_boxes = []; all_leaf_boxes = [];
@@ -860,6 +895,10 @@ class RecursiveDecoder(nn.Module):
                 is_leaf_loss = is_leaf_loss + child_losses['leaf']
                 child_exists_loss = child_exists_loss + child_losses['exists']
                 semantic_loss = semantic_loss + child_losses['semantic']
+                child_count_loss = child_count_loss + child_losses['child_count']
+
+
+
                 #edge_exists_loss = edge_exists_loss + child_losses['edge_exists']
                 #sym_loss = sym_loss + child_losses['sym']
                 #adj_loss = adj_loss + child_losses['adj']
@@ -898,5 +937,5 @@ class RecursiveDecoder(nn.Module):
             #         'edge_exists': edge_exists_loss, 'sym': sym_loss, 'adj': adj_loss}, \
             #                 torch.cat(all_boxes, dim=0), torch.cat(all_leaf_boxes, dim=0)
             # print (f'Recon_loss_count = {self.node_recon_count} ')
-            return {'box': box_loss + unused_box_loss, 'leaf': is_leaf_loss, 'exists': child_exists_loss, 'semantic': semantic_loss}, torch.cat(all_boxes, dim=0),  torch.cat(all_leaf_boxes, dim=0)
+            return {'box': box_loss + unused_box_loss, 'leaf': is_leaf_loss, 'exists': child_exists_loss, 'semantic': semantic_loss, 'child_count': child_count_loss}, torch.cat(all_boxes, dim=0),  torch.cat(all_leaf_boxes, dim=0)
 

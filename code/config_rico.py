@@ -24,7 +24,7 @@ def add_data_args(parser):
     parser.add_argument('--extract_hier', action='store_true', default=False, help='whether to extract new hierarchy on top of rico')
     parser.add_argument('--semantic_representation', type=str, default='one_hot', choices = ['one_hot', 'nn_embedding'])
 
-    return parser
+    return parser 
 
 def add_train_vae_args(parser):
     parser = add_base_args(parser)
@@ -59,6 +59,8 @@ def add_train_vae_args(parser):
     parser.add_argument('--lr_decay_patience', type=int, default=10, help='ReduceLROnPlateau reduce LR after X *epochs* of valid loss not decreasing')
     parser.add_argument('--non_variational', action='store_true', default=False, help='make the variational autoencoder non-variational')
     parser.add_argument('--non_probabilistic', action='store_true', default=False, help='make the variational autoencoder non-variational/non-probabilistic')
+    parser.add_argument('--intermediate_box_encoding', action='store_true', default=False, help='make the variational autoencoder non-variational/non-probabilistic')
+    parser.add_argument('--encode_child_count', action='store_true', default=False, help='make the variational autoencoder non-variational/non-probabilistic')
     parser.add_argument('--scheduler', type=str, default='StepLR',  choices =['StepLR','ReduceLROnPlateau'], help='type of the learning rate scheduler')
     parser.add_argument('--metric', type=str, default='total_loss', help='Select the best validated model based on this loss metric')
     parser.add_argument('--permutations', type=int, default=1, help='No permute when permutations == 1')
@@ -76,6 +78,7 @@ def add_train_vae_args(parser):
     parser.add_argument('--loss_weight_leaf', type=float, default=1.0, help='weight for the "node is leaf" reconstruction loss')
     parser.add_argument('--loss_weight_exists', type=float, default=1.0, help='weight for the "node exists" reconstruction loss')
     parser.add_argument('--loss_weight_semantic', type=float, default=0.1, help='weight for the semantic reconstruction loss')
+    parser.add_argument('--loss_weight_childcount',  type=float, default=10, help='weight for the child count loss')
     parser.add_argument('--loss_weight_edge_exists', type=float, default=1.0, help='weight for the "edge exists" loss')
 
     # logging
