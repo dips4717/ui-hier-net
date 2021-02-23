@@ -303,6 +303,7 @@ def forward(batch, data_features, encoder, decoder, device, conf,
         'kldiv': torch.zeros(1, device=device), 
         'child_count': torch.zeros(1, device=device)}
 
+        'kldiv': torch.zeros(1, device=device) }
     # 'anchor': torch.zeros(1, device=device),
     # 'edge_exists': torch.zeros(1, device=device),
     # 'sym': torch.zeros(1, device=device),
@@ -384,6 +385,7 @@ def forward(batch, data_features, encoder, decoder, device, conf,
                 f'''{losses['exists'].item():>11.2f} '''
                 f'''{losses['semantic'].item():>11.2f} '''    
                 f'''{losses['child_count'].item():>11.2f} '''            
+                f'''{losses['semantic'].item():>11.2f} '''                
                 f'''{losses['kldiv'].item():>10.2f} '''
                 f'''{total_loss.item():>10.2f}\n''')
             flog.flush()
@@ -415,6 +417,7 @@ if __name__ == '__main__':
     
     #Set parameters for debugging:
     # config.exp_name =  'rico_hier_vae' 
+    config.exp_name =  'rico_hier_vae_temp_test' 
     config.category = 'Rico' 
     config.semantics= 'rico_plus'
     config.data_path = '/home/dipu/dipu_ps/codes/UIGeneration/data'

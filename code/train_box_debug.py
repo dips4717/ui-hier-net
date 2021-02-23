@@ -337,7 +337,7 @@ if __name__ == '__main__':
     config = parser.parse_args()
     
     #Set parameters for debugging:
-    config.exp_name =  'box_vae_chair_temp_test' 
+    config.exp_name =  'box_vae_chair_temp_test_1' 
     config.category = 'Chair' 
     config.data_path = '../data/partnetdata/chair_hier' 
     config.train_dataset = 'train_no_other_less_than_10_parts.txt' 
