@@ -121,9 +121,9 @@ def train(conf):
                                 is_train=False, permute=False, n_permutes=1)
         
     train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=conf.batch_size, \
-            shuffle=True, collate_fn=lambda x: list(zip(*x)))
+            num_workers=4, pin_memory=True, shuffle=True, collate_fn=lambda x: list(zip(*x)))
     valdt_dataloader = torch.utils.data.DataLoader(valdt_dataset, batch_size=conf.batch_size, \
-            shuffle=True, collate_fn=lambda x: list(zip(*x)))
+            num_workers=4, pin_memory=True, shuffle=True, collate_fn=lambda x: list(zip(*x)))
 
     # create logs
     if not conf.no_console_log:    
@@ -425,15 +425,12 @@ if __name__ == '__main__':
     # config.train_dataset = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_max_node49_dataset.txt'
     # config.val_dataset = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_max_node49_dataset.txt'
 
-    
-    config.epochs = 40 
+
     config.model_version = 'model_rico_hier' 
     config.extract_hier = True
     config.loss_for_box = 'L2'
-    #config.exp_name = 'rico_hier_timing'
-
-    # Tree.load_category_info(config.category)
     
+    # Tree.load_category_info(config.category)  
     # semantics
     if config.semantics:
         Hierarchy.set_semantics(config.semantics)

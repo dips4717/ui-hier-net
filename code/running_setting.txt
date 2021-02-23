@@ -66,3 +66,101 @@ nohup python train_rico_hier.py \
 --loss_weight_semantic 1.0 \
 --scheduler 'StepLR'\
 > rico_hier_AE_SemWt1_nnemb_childCountEnc_interBoxEnc_bs128.out &
+
+================== LR Step, 
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc_LRev7' \
+--non_probabilistic \
+--epochs 18 \
+--device 'cuda:0' \
+--lr_decay_every 7 \
+--encode_child_count \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_AE_SemWt1_nnemb_childCountEnc_LRev7.out &
+
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_LRev7' \
+--non_probabilistic \
+--device 'cuda:1' \
+--epochs 18 \
+--lr_decay_every 7 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_AE_SemWt1_nnemb_LRev7.out &
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_VAE_SemWt1_nnemb_LRev7' \
+--device 'cuda:2' \
+--epochs 18 \
+--lr_decay_every 7 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_VAE_SemWt1_nnemb_LRev7.out &
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_VAE_SemWt1_nnemb_childCountEnc_LRev7' \
+--device 'cuda:3' \
+--epochs 18 \
+--lr_decay_every 7 \
+--encode_child_count \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_VAE_SemWt1_nnemb_childCountEnc_LRev7.out &
+
+
+================== LR Reduce, patience =2 
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc_LrPlatP1' \
+--non_probabilistic \
+--epochs 10 \
+--device 'cuda:0' \
+--encode_child_count \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'ReduceLROnPlateau' \
+--lr_decay_patience 1 \
+--lr_decay_factor 0.2 \
+> rico_hier_AE_SemWt1_nnemb_childCountEnc_LrPlatP1.out &
+
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_LrPlatP1' \
+--non_probabilistic \
+--device 'cuda:1' \
+--epochs 10 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'ReduceLROnPlateau' \
+--lr_decay_patience 1 \
+--lr_decay_factor 0.2 \
+> rico_hier_AE_SemWt1_nnemb_LrPlatP1.out &
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_VAE_SemWt1_nnemb_LrPlatP1' \
+--device 'cuda:2' \
+--epochs 10 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'ReduceLROnPlateau' \
+--lr_decay_patience 1 \
+--lr_decay_factor 0.2 \
+> rico_hier_VAE_SemWt1_nnemb_LrPlatP1.out &
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_VAE_SemWt1_nnemb_childCountEnc_LrPlatP1' \
+--device 'cuda:3' \
+--epochs 10 \
+--encode_child_count \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'ReduceLROnPlateau' \
+--lr_decay_patience 1 \
+--lr_decay_factor 0.2 \
+> rico_hier_VAE_SemWt1_nnemb_childCountEnc_LrPlatP1.out &
+

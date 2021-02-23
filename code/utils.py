@@ -345,5 +345,4 @@ def mkdir_if_missing(directory):
     if os.path.exists(directory):
         pass
     else:
-        os.mkdirs(directory)
-    
+        os.makedirs(directory)       

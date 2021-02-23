@@ -22,12 +22,8 @@ def add_data_args(parser):
     parser.add_argument('--train_dataset', type=str, default='train.txt', help='file name for the list of object names for training')
     parser.add_argument('--edge_types', type=str, nargs='*', default=['ADJ', 'ROT_SYM', 'TRANS_SYM', 'REF_SYM'], help='list of possible edge types')
     parser.add_argument('--extract_hier', action='store_true', default=False, help='whether to extract new hierarchy on top of rico')
-    parser.add_argument('--semantic_representation', type=str, default='nn_embedding', choices = ['one_hot', 'nn_embedding'])
-
     return parser
-    parser.add_argument('--semantic_representation', type=str, default='one_hot', choices = ['one_hot', 'nn_embedding'])
 
-    return parser 
 
 def add_train_vae_args(parser):
     parser = add_base_args(parser)
@@ -50,6 +46,7 @@ def add_train_vae_args(parser):
     parser.add_argument('--num_gnn_iterations', type=int, default=2, help='number of message passing iterations for the GNN encoding')
     parser.add_argument('--num_dec_gnn_iterations', type=int, default=2, help='number of message passing iterations for the GNN decoding')
     parser.add_argument('--model_version', type=str, default='model', help='model file name')
+    parser.add_argument('--semantic_representation', type=str, default='one_hot', choices = ['one_hot', 'nn_embedding'])
 
     # training parameters
     parser.add_argument('--epochs', type=int, default=40)
@@ -88,7 +85,7 @@ def add_train_vae_args(parser):
     parser.add_argument('--log_path', type=str, default='../data/logs')
     parser.add_argument('--no_tb_log', action='store_true', default=False)
     parser.add_argument('--no_console_log', action='store_true', default=False)
-    parser.add_argument('--console_log_interval', type=int, default=30, help='number of optimization steps beween console log prints')
+    parser.add_argument('--console_log_interval', type=int, default=300, help='number of optimization steps beween console log prints')
     parser.add_argument('--checkpoint_interval', type=int, default=5000, help='number of optimization steps beween checkpoints')
     parser.add_argument('--web_dir', type=str, default='./www', help='base dir for html visualization')
 
@@ -105,16 +102,12 @@ def add_result_args(parser):
     parser.add_argument('--result_path', type=str, default='../data/results')
     parser.add_argument('--model_epoch', type=int, default=None, help='model at what epoch to use (set to < 0 for the final/most recent model)')
     parser.add_argument('--num_gen', type=int, default=100)
-    parser
-    parser.add_argument('--model_epoch', type=int, default=-1, help='model at what epoch to use (set to < 0 for the final/most recent model)')
-    parser.add_argument('--num_gen', type=int, default=100)
+    #parser.add_argument('--model_epoch', type=int, default=-1, help='model at what epoch to use (set to < 0 for the final/most recent model)')
     return parser
 
 def add_eval_args(parser):
     parser = add_result_args(parser)
     parser = add_data_args(parser)
-    
-    parser.add_argument('--test_dataset', type=str, default='mini_test_uxid.txt', help='file name for the list of object names for testing')
     parser.add_argument('--is_leaf_thres', type=float, default=0.5, help ='threshold on sigmoid(logit) for deciding is_leaf')
     parser.add_argument('--is_exists_thres', type=float, default=0.5, help ='threshold on sigmoid(exists) for deciding if child node exists')
     parser.add_argument('--split', type=str, default='val', help ='split set to perform the reconstruction evaluation')

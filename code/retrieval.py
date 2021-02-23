@@ -104,6 +104,7 @@ def main():
     
     # load train config
     conf = torch.load(os.path.join(eval_conf.model_path, eval_conf.exp_name, 'conf.pth'))
+      
     eval_conf.data_path = conf.data_path    
     # merge training and evaluation configurations, giving evaluation parameters precendence
     conf.__dict__.update(eval_conf.__dict__)

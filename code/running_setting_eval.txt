@@ -6,6 +6,26 @@ python reconstruct_hier.py --exp_name 'rico_hier_exp_AE_sem_wt_1_nnemb' --split 
 
 python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_SchRonPlat_bs128' --split 'test'
 
+
 python reconstruct_hier.py --exp_name 'rico_hier_exp_3' --split 'test'
+python reconstruct_hier.py --exp_name 'rico_hier_exp_3' --split 'train'
+python reconstruct_hier.py --exp_name 'rico_hier_exp_3' --split 'val'
 
 
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_SchRonPlat_bs128' --split 'test'
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_SchRonPlat_bs128' --split 'val'
+
+
+python reconstruct_hier.py --exp_name 'rico_hier_exp_2' --split 'test' --device 'cuda:3'
+python reconstruct_hier.py --exp_name 'rico_hier_exp_2' --split 'val' --device 'cuda:3'
+
+
+
+python reconstruct_hier.py --exp_name 'rico_hier_exp_AE' --split 'test' --device 'cuda:2'
+python reconstruct_hier.py --exp_name 'rico_hier_exp_2' --split 'val' --device 'cuda:3'
+
+
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc' --split 'val' --device 'cuda:2'
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN2' --split 'test'

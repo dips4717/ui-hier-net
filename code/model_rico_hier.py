@@ -387,10 +387,6 @@ class GNNChildDecoder(nn.Module):
         edge_indices = torch.tensor(edge_indices, device=device, dtype=torch.long).view(-1,2)
         # edge_indices = torch.tensor(edge_indices, dtype=torch.long).view(-1,2)
 
-
-
-
-
         # For Structurenet to predict the edges features / edge existence prediction 
         # Removed for RICO: We do not predict edges and edges features and its type for now. 
         # Negate this for now. In RICO, we assume that we have fully-connected graph. 
@@ -601,7 +597,7 @@ class RecursiveDecoder(nn.Module):
 
         is_leaf_logit = self.leaf_classifier(node_latent)
         #print(full_label, 'is_leaf: ',is_leaf)
-        print(full_label, 'is_leaf: ',is_leaf)
+        # print(full_label, 'is_leaf: ',is_leaf)
         # node_is_leaf = is_leaf_logit.item() > 0
         node_is_leaf = torch.sigmoid(is_leaf_logit).item() > 0.4
 
@@ -646,6 +642,7 @@ class RecursiveDecoder(nn.Module):
                     child_nodes.append(self.decode_node(\
                             child_feats[:, ci, :], max_depth-1, child_full_label, \
                             is_leaf = (child_full_label not in Hierarchy.non_leaf_sem_names)))
+                    
                     # child_nodes.append(self.decode_node(\
                     #         child_feats[:, ci, :], max_depth-1, child_full_label, \
                     #         is_leaf=(child_full_label not in Tree.part_non_leaf_sem_names)))
@@ -704,12 +701,20 @@ class RecursiveDecoder(nn.Module):
             #  1. Add Geometric consistency losses for RICO layout generation: akin to  sym and adj 
             #  2. Add auxiliary bounding box losses; ioU based inspired by DETR. 
             #  3. Add the anchor loss as in structurenet. 
-            return {'box' : box_loss, 'leaf': is_leaf_loss, 
-                    'exists': torch.zeros_like(box_loss), 'semantic': torch.zeros_like(box_loss),
-                    'edge_exists': torch.zeros_like(box_loss)
-                    'edge_exists': torch.zeros_like(box_loss),
-                    'child_count': torch.zeros_like(box_loss)
-                    }, box, box
+
+            if self.conf.encode_child_count:
+                return {'box' : box_loss, 
+                        'leaf': is_leaf_loss, 
+                        'exists': torch.zeros_like(box_loss), 
+                        'semantic': torch.zeros_like(box_loss),
+                        'child_count': torch.zeros_like(box_loss)
+                        }, box, box
+            else:
+                return {'box' : box_loss, 
+                        'leaf': is_leaf_loss, 
+                        'exists': torch.zeros_like(box_loss), 
+                        'semantic': torch.zeros_like(box_loss),
+                        }, box, box    
         
         else:
             #child_feats, child_sem_logits, child_exists_logits, edge_exists_logits = \
@@ -897,7 +902,8 @@ class RecursiveDecoder(nn.Module):
                 is_leaf_loss = is_leaf_loss + child_losses['leaf']
                 child_exists_loss = child_exists_loss + child_losses['exists']
                 semantic_loss = semantic_loss + child_losses['semantic']
-                child_count_loss = child_count_loss + child_losses['child_count']
+                if self.conf.encode_child_count:
+                    child_count_loss = child_count_loss + child_losses['child_count']
 
 
 
@@ -939,5 +945,8 @@ class RecursiveDecoder(nn.Module):
             #         'edge_exists': edge_exists_loss, 'sym': sym_loss, 'adj': adj_loss}, \
             #                 torch.cat(all_boxes, dim=0), torch.cat(all_leaf_boxes, dim=0)
             # print (f'Recon_loss_count = {self.node_recon_count} ')
-            return {'box': box_loss + unused_box_loss, 'leaf': is_leaf_loss, 'exists': child_exists_loss, 'semantic': semantic_loss, 'child_count': child_count_loss}, torch.cat(all_boxes, dim=0),  torch.cat(all_leaf_boxes, dim=0)
+            if self.conf.encode_child_count:
+                return {'box': box_loss + unused_box_loss, 'leaf': is_leaf_loss, 'exists': child_exists_loss, 'semantic': semantic_loss, 'child_count': child_count_loss}, torch.cat(all_boxes, dim=0),  torch.cat(all_leaf_boxes, dim=0)
+            else:
+                return {'box': box_loss + unused_box_loss, 'leaf': is_leaf_loss, 'exists': child_exists_loss, 'semantic': semantic_loss}, torch.cat(all_boxes, dim=0),  torch.cat(all_leaf_boxes, dim=0)
 

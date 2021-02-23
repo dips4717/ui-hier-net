@@ -122,7 +122,7 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
             objects.append([uxid, o, o_gt, z, edit_distance, IoU])
 
         # statistics
-        P.print('\n Expname: ', opt.expname)
+        P.print('\n Expname: ', opt.exp_name)
         P.print('\n isleaf_threshold: ', opt.is_leaf_thres)
         P.print('\n isexist_threshold: ', opt.is_exists_thres)
         P.print(stats.to_string(verbose=True))
@@ -157,7 +157,8 @@ parser = add_eval_args(parser)
 eval_conf = parser.parse_args() 
 
 # Write here settings for debuging
-#eval_conf.exp_name = 'rico_hier_exp_AE_sem_wt_1_nnemb'
+#eval_conf.exp_name = 'rico_hier_exp_3'
+#eval_conf.split = 'test'
 
 print('\nExp_name: {eval_conf.exp_name}')
 print('Split: {eval_conf.split}\n')
@@ -174,6 +175,9 @@ else:
 
 # load train config
 conf = torch.load(os.path.join(eval_conf.model_path, eval_conf.exp_name, 'conf.pth'))
+if not hasattr(conf, 'semantic_representation'): conf.semantic_representation = 'one_hot'
+if not hasattr(conf, 'intermediate_box_encoding'): conf.intermediate_box_encoding = False
+if not hasattr(conf, 'encode_child_count'): conf.encode_child_count = False
 eval_conf.data_path = conf.data_path
 
 # merge training and evaluation configurations, giving evaluation parameters precendence
