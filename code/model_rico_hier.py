@@ -16,11 +16,11 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 import torch_scatter
-import compute_sym
+#import compute_sym
 from chamfer_distance import ChamferDistance
-from data import Tree
+#from data import Tree
 from rico import Hierarchy, Node, RicoHierarchy
-from utils import linear_assignment, load_pts, transform_pc_batch, get_surface_reweighting_batch
+from utils_structurenet import linear_assignment, load_pts, transform_pc_batch, get_surface_reweighting_batch
 
 
 class Sampler(nn.Module):
@@ -279,14 +279,11 @@ class RecursiveEncoder(nn.Module):
             child_exists[:, :len(node.children), :] = 1
 
             # get feature of current node (parent of the children)
-            #edge_type_onehot, edge_indices = node.edge_tensors(
-            #    edge_types=self.conf.edge_types, device=child_feats.device, type_onehot=True)
-            
-            #return self.child_encoder(child_feats, child_exists, edge_type_onehot, edge_indices)
-
-            edge_feats, edge_indices = node.get_edges(device=child_feats.device)
-            
-            parent_feat = self.child_encoder(child_feats, child_exists, edge_feats, edge_indices)
+            if not self.non_gnn:
+                edge_feats, edge_indices = node.get_edges(device=child_feats.device)
+                parent_feat =  self.child_encoder(child_feats, child_exists, edge_feats, edge_indices)
+            else:
+                parent_feat =  self.child_encoder(child_feats, child_exists)
 
             if self.conf.intermediate_box_encoding:
                 intermediate_box_enc = self.box_encoder(node.get_center_scale().view(1,-1))
@@ -300,13 +297,7 @@ class RecursiveEncoder(nn.Module):
                 parent_feat = torch.relu(self.child_count_mlp(parent_feat))
 
             return parent_feat    
-            #return self.child_encoder(child_feats, child_exists, edge_feats, edge_indices)
-
-            if not self.non_gnn:
-                edge_feats, edge_indices = node.get_edges(device=child_feats.device)
-                return self.child_encoder(child_feats, child_exists, edge_feats, edge_indices)
-            else:
-                return self.child_encoder(child_feats, child_exists)
+            
 
     def encode_structure(self, obj):
         root_latent = self.encode_node(obj.root)
@@ -683,7 +674,7 @@ class RecursiveDecoder(nn.Module):
     def decode_structure(self, z, max_depth):
         root_latent = self.sample_decoder(z)
         # root = self.decode_node(root_latent, max_depth, Tree.root_sem)
-        root = self.decode_node(root_latent, max_depth, '?')
+        root = self.decode_node(root_latent, max_depth, '[ROOT]')
         
         obj = RicoHierarchy(root)
         obj.is_labeled = True
@@ -699,7 +690,7 @@ class RecursiveDecoder(nn.Module):
         #print(full_label, 'is_leaf: ',is_leaf)
         # print(full_label, 'is_leaf: ',is_leaf)
         # node_is_leaf = is_leaf_logit.item() > 0
-        node_is_leaf = torch.sigmoid(is_leaf_logit).item() > 0.4
+        node_is_leaf = torch.sigmoid(is_leaf_logit).item() > self.conf.is_leaf_thres
 
 
         # use maximum depth to avoid potential infinite recursion
@@ -717,9 +708,8 @@ class RecursiveDecoder(nn.Module):
             #ret.set_from_box_quat(box.view(-1))
             ret.set_center_scale(box.view(-1))
             return ret
-        
         else:
-            #child_feats, child_sem_logits, child_exists_logit, edge_exists_logits = \
+            #child_feats, child_sem_logits, child_exists_logit  , edge_exists_logits = \
             #        self.child_decoder(node_latent)
             
             child_feats, child_sem_logits, child_exists_logit = \
@@ -727,27 +717,49 @@ class RecursiveDecoder(nn.Module):
 
             child_sem_logits = child_sem_logits.cpu().numpy().squeeze()
 
-            # children
-            child_nodes = []
-            child_idx = {}
-            for ci in range(child_feats.shape[1]):
-                if torch.sigmoid(child_exists_logit[:, ci, :]).item() > 0.5:
-                    idx = np.argmax(child_sem_logits[ci, :])
-                    # idx = np.argmax(child_sem_logits[ci, Tree.part_name2cids[full_label]])
-                    # idx = Tree.part_name2cids[full_label][idx]
+            if self.conf.encode_child_count:
+                child_count_logits = self.child_count_decoder(node_latent)
+                _ , pred_child_count = torch.max(child_count_logits, 1)
+
+            if self.conf.use_pred_childnum:
+                    _, sel_child_idx = torch.topk(child_exists_logit[0,:,0], pred_child_count.item())
+                    child_feats = child_feats[:,sel_child_idx,:]
+                    child_sem_logits = child_sem_logits[sel_child_idx.cpu().numpy(),:]    
                     
-                    child_full_label = Hierarchy.ID2SEM[idx]
-                    #child_full_label = Tree.part_id2name[idx]
-                   
-                    child_nodes.append(self.decode_node(\
-                            child_feats[:, ci, :], max_depth-1, child_full_label, \
-                            is_leaf = (child_full_label not in Hierarchy.non_leaf_sem_names)))
-                    
-                    # child_nodes.append(self.decode_node(\
-                    #         child_feats[:, ci, :], max_depth-1, child_full_label, \
-                    #         is_leaf=(child_full_label not in Tree.part_non_leaf_sem_names)))
-                    
-                    child_idx[ci] = len(child_nodes) - 1
+                    child_nodes = []
+                    child_idx = {}
+                    for ci in range(child_feats.shape[1]):
+                        if self.conf.use_sem2cids_prior:
+                            idx = np.argmax(child_sem_logits[ci, Hierarchy.SEM2CIDS[full_label]])
+                            idx = Hierarchy.SEM2CIDS[full_label][idx]
+                        else:
+                            idx = np.argmax(child_sem_logits[ci, :])
+
+                        child_full_label = Hierarchy.ID2SEM[idx]                   
+                        child_nodes.append(self.decode_node(\
+                                child_feats[:, ci, :], max_depth-1, child_full_label, \
+                                is_leaf = (child_full_label not in Hierarchy.non_leaf_sem_names)))
+
+                        child_idx[ci] = len(child_nodes) - 1
+
+            else:    # is_exist_based decoding
+                # children
+                child_nodes = []
+                child_idx = {}
+                for ci in range(child_feats.shape[1]):
+                    if torch.sigmoid(child_exists_logit[:, ci, :]).item() > self.conf.is_exists_thres:
+                        if self.conf.use_sem2cids_prior:
+                            idx = np.argmax(child_sem_logits[ci, Hierarchy.SEM2CIDS[full_label]])
+                            idx = Hierarchy.SEM2CIDS[full_label][idx]
+                        else:
+                            idx = np.argmax(child_sem_logits[ci, :])
+
+                        child_full_label = Hierarchy.ID2SEM[idx]                   
+                        child_nodes.append(self.decode_node(\
+                                child_feats[:, ci, :], max_depth-1, child_full_label, \
+                                is_leaf = (child_full_label not in Hierarchy.non_leaf_sem_names)))
+
+                        child_idx[ci] = len(child_nodes) - 1
 
             # edges
             # child_edges = []
@@ -807,7 +819,7 @@ class RecursiveDecoder(nn.Module):
                         'leaf': is_leaf_loss, 
                         'exists': torch.zeros_like(box_loss), 
                         'semantic': torch.zeros_like(box_loss),
-                        'child_count': torch.zeros_like(box_loss)
+                        'child_count': torch.zeros_like(box_loss), 
                         }, box, box
             else:
                 return {'box' : box_loss, 
@@ -828,6 +840,14 @@ class RecursiveDecoder(nn.Module):
                 child_gt_count = torch.tensor([len(gt_node.children)], dtype=torch.int64, device=gt_node.device)
                 child_count_loss = self.childcountCELoss(child_count_logits, child_gt_count)
                 child_count_loss = child_count_loss.sum()
+
+                _ , pred_child_count = torch.max(child_count_logits, 1)
+
+                if self.conf.use_pred_childnum:
+                    _, sel_child_idx = torch.topk(child_exists_logits[0,:,0], pred_child_count.item())
+                    child_feats = child_feats[:,sel_child_idx,:]
+                    child_sem_logits = child_sem_logits[:,sel_child_idx,:]
+
 
             # generate box prediction for each child
             feature_len = node_latent.size(1)   #256
@@ -929,7 +949,8 @@ class RecursiveDecoder(nn.Module):
             unmatched_boxes = []
             for i in range(num_child_parts):
                 if i not in matched_pred_idx:
-                    unmatched_boxes.append(child_pred_boxes[i, 3:6].view(1, -1))
+                    #unmatched_boxes.append(child_pred_boxes[i, 3:6].view(1, -1))
+                    unmatched_boxes.append(child_pred_boxes[i, 2:].view(1, -1))
             if len(unmatched_boxes) > 0:
                 unmatched_boxes = torch.cat(unmatched_boxes, dim=0)
                 unused_box_loss = unmatched_boxes.pow(2).sum() * 0.01
@@ -1004,8 +1025,6 @@ class RecursiveDecoder(nn.Module):
                 semantic_loss = semantic_loss + child_losses['semantic']
                 if self.conf.encode_child_count:
                     child_count_loss = child_count_loss + child_losses['child_count']
-
-
 
                 #edge_exists_loss = edge_exists_loss + child_losses['edge_exists']
                 #sym_loss = sym_loss + child_losses['sym']

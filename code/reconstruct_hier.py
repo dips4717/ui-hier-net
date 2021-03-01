@@ -22,7 +22,7 @@ import argparse
 import numpy as np
 import torch
 import torch.utils.data
-from config_rico import add_eval_args
+from config_rico import add_eval_args, add_train_vae_args
 #from data import PartNetDataset, Tree
 from rico import Hierarchy
 from datasets import RicoFlatDataset, RicoHierDataset
@@ -137,8 +137,6 @@ def visualize(P, opt, expname, dataset, encoder, decoder, savedir, web_dir, show
         
         split = 'train' if 'train' in opt.test_dataset else 'val'
         
-
-
         if opt.model_epoch is None:
             html = HTML(f'/recon_{split}@{expname}_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}', expname, base_url=web_dir, inverted=True, overwrite=True, refresh=int(refresh))
         else:
@@ -160,13 +158,10 @@ eval_conf = parser.parse_args()
 #eval_conf.exp_name = 'rico_hier_exp_3'
 #eval_conf.split = 'test'
 
-print('\nExp_name: {eval_conf.exp_name}')
-print('Split: {eval_conf.split}\n')
-
 base_dataset_path = '/home/dipu/dipu_ps/codes/UIGeneration/prj-ux-layout-copy/codes/scripts/rico_gen_data/rico_mtn_50_geq2_mcpn_10_V2/'
 eval_conf.test_dataset = base_dataset_path + eval_conf.split + '_uxid.txt'
 
-eval_conf.model_epoch = None
+# eval_conf.model_epoch = None
 eval_conf.num_gen = 100
 if 'mini' in eval_conf.test_dataset:
     eval_conf.web_dir = './www_minidataset'
@@ -178,10 +173,24 @@ conf = torch.load(os.path.join(eval_conf.model_path, eval_conf.exp_name, 'conf.p
 if not hasattr(conf, 'semantic_representation'): conf.semantic_representation = 'one_hot'
 if not hasattr(conf, 'intermediate_box_encoding'): conf.intermediate_box_encoding = False
 if not hasattr(conf, 'encode_child_count'): conf.encode_child_count = False
-eval_conf.data_path = conf.data_path
+if not hasattr(conf, 'non_gnn'): conf.non_gnn = False
+if not hasattr(conf, 'use_pred_childnum'): conf.use_pred_childnum = False
 
+eval_conf.data_path = conf.data_path
 # merge training and evaluation configurations, giving evaluation parameters precendence
 conf.__dict__.update(eval_conf.__dict__)
+
+
+print(f'\nExp_name: {eval_conf.exp_name}')
+print(f'Split: {eval_conf.split}')
+print(f'Using device: {conf.device}')
+print(f'non_probabilistic: {conf.non_probabilistic}')
+print(f'non_variational: {conf.non_variational}')
+print(f'encode_child_count: {conf.encode_child_count}')
+print(f'use_pred_childnum: {conf.use_pred_childnum}')
+print('\n')
+
+print('')
 
 # load object category information
 if conf.semantics:
@@ -194,7 +203,7 @@ models = utils.get_model_module(conf.model_version)
 
 # set up device
 device = torch.device(conf.device)
-print(f'Using device: {conf.device}')
+
 
 # check if eval results already exist. If so, delete it. 
 # if os.path.exists(os.path.join(conf.result_path, conf.exp_name)):
@@ -213,9 +222,7 @@ decoder = models.RecursiveDecoder(conf)
 models = [encoder, decoder]
 model_names = ['encoder', 'decoder']
 
-print('\n\n')
-#print(f'non_probabilistic: {conf.non_probabilistic}')
-print(f'non_variational: {conf.non_variational}')
+
 
 # load pretrained model
 __ = utils.load_checkpoint(
@@ -234,13 +241,29 @@ for m in models:
     m.eval()
 
 global P
-P = Printer(f'{os.path.join(conf.result_path, conf.exp_name)}/{conf.split}recon_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}.log')
+if conf.model_epoch is None:
+    P = Printer(f'{os.path.join(conf.result_path, conf.exp_name)}/ {conf.split}_recon_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}.log')
+else:
+    P = Printer(f'{os.path.join(conf.result_path, conf.exp_name)}/ epoch_{conf.model_epoch}_{conf.split}_recon_isleaf_{conf.is_leaf_thres}_isexists_{conf.is_exists_thres}.log')
+
+
+P.print(f'\nExp_name: {eval_conf.exp_name}')
+P.print(f'Split: {eval_conf.split}')
+P.print(f'Using device: {conf.device}')
+P.print(f'non_probabilistic: {conf.non_probabilistic}')
+P.print(f'non_variational: {conf.non_variational}')
+P.print(f'encode_child_count: {conf.encode_child_count}')
+P.print(f'use_pred_childnum: {conf.use_pred_childnum}')
+P.print('\n')
+
+P.print('\n======== Configs ==============\n')
+P.print(vars(conf))
 
 
 # create dataset and data loader
 data_features = ['uxid', 'object']
 DatasetClass = globals()[conf.DatasetClass] 
-print('Using dataset:', DatasetClass) 
+#print('Using dataset:', DatasetClass) 
 
 test_dataset = DatasetClass(conf.data_path, conf.test_dataset, ['uxid', 'object'],
                             is_train=False, permute=False, n_permutes=1)

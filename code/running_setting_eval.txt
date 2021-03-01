@@ -27,5 +27,71 @@ python reconstruct_hier.py --exp_name 'rico_hier_exp_2' --split 'val' --device '
 
 
 python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc' --split 'val' --device 'cuda:2'
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc' --split 'test' --device 'cuda:2'
+
+
 
 python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN2' --split 'test'
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc_interBoxEnc' --split 'test' --model_epoch 20 --device 'cuda:3'
+
+
+
+========== Lr 
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_LRev7' --split 'test' --model_epoch 20 --device 'cuda:0' &
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc_LRev7' --split 'test' --model_epoch 20 --device 'cuda:1' 
+
+
+================== LR Reduce, patience =2 
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_childCountEnc_LrPlatP1' --device 'cuda:0' --split 'test' --model_epoch 20 
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_LrPlatP1' --device 'cuda:1' --split 'test' --model_epoch 20 
+
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_LrPlatP1' --device 'cuda:2' --split 'test' --model_epoch 20 
+
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_childCountEnc_LrPlatP1' --device 'cuda:3' --split 'test' --model_epoch 20 
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_interBoxEnc_LRev7' --device 'cuda:3' --split 'test' 
+
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_interBoxEnc_LRev7' --device 'cuda:2' --split 'test' 
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_LRev7' --device 'cuda:3' --split 'test' --model_epoch 15
+
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_LRev7' --device 'cuda:2' --split 'test' --model_epoch 15
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_LRev7' --device 'cuda:3' --split 'test' --model_epoch 10
+
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_LRev7' --device 'cuda:2' --split 'test' --model_epoch 10
+
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_LRev7' --device 'cuda:3' --split 'test' --model_epoch 5
+
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_LRev7' --device 'cuda:2' --split 'test' --model_epoch 5
+
+
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_interBoxEnc_LRev7' --device 'cuda:0' --split 'test' 
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_interBoxEnc_LRev7' --device 'cuda:1' --split 'test' 
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7' --device 'cuda:0' --split 'test'
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7' --device 'cuda:0' --split 'test' --use_pred_childnum --use_sem2cids_prior
+
+
+To do: 
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN2' --split 'test' '--use_sem2cids_prior'
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN2' --split 'test' 
+
+
+
+
+=======
+Impact of use childpred 
+=============
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7' --device 'cuda:0' --split 'test' --use_pred_childnum --use_sem2cids_prior
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7' --device 'cuda:1' --split 'test' 
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7' --device 'cuda:1' --split 'test' --use_sem2cids_prior
+python reconstruct_hier.py --exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7' --device 'cuda:1' --split 'test' --use_pred_childnum
+
+
+python reconstruct_hier.py --exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_LRev7_unmatchedbox' --device 'cuda:1' --split 'test' 

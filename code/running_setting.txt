@@ -164,3 +164,100 @@ nohup python train_rico_hier.py \
 --lr_decay_factor 0.2 \
 > rico_hier_VAE_SemWt1_nnemb_childCountEnc_LrPlatP1.out &
 
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_interboxEnc_LRev7' \
+--non_probabilistic \
+--non_gnn \
+--
+--epochs 21 \
+--device 'cuda:0' \
+--lr_decay_every 7 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_AE_SemWt1_nnemb_nonGNN_LRev7.out &
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_LRev7' \
+--non_gnn \
+--epochs 21 \
+--device 'cuda:1' \
+--lr_decay_every 7 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_VAE_SemWt1_nnemb_nonGNN_LRev7.out &
+
+
+===============================
+24/02/2021
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_interBoxEnc_LRev7' \
+--non_probabilistic \
+--non_gnn \
+--intermediate_box_encoding \
+--epochs 12 \
+--device 'cuda:0' \
+--lr_decay_every 7 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_AE_SemWt1_nnemb_nonGNN_interBoxEnc_LRev7.out &
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_interBoxEnc_LRev7' \
+--non_gnn \
+--intermediate_box_encoding \
+--epochs 12 \
+--device 'cuda:1' \
+--lr_decay_every 7 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_VAE_SemWt1_nnemb_nonGNN_interBoxEnc_LRev7.out &
+
+=====================================================
+25/02/2021
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7' \
+--non_probabilistic \
+--use_pred_childnum \
+--encode_child_count \
+--non_gnn \
+--epochs 12 \
+--device 'cuda:0' \
+--lr_decay_every 7 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_AE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7.out &
+
+
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_VAE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7' \
+--use_pred_childnum \
+--encode_child_count \
+--non_gnn \
+--epochs 12 \
+--device 'cuda:1' \
+--lr_decay_every 7 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_VAE_SemWt1_nnemb_nonGNN_childCountEnc_childCountPred_LRev7.out &
+
+
+================== LR Step, 
+nohup python train_rico_hier.py \
+--exp_name 'rico_hier_AE_SemWt1_nnemb_nonGNN_LRev7_unmatchedbox' \
+--non_probabilistic \
+--non_gnn \
+--epochs 18 \
+--device 'cuda:0' \
+--lr_decay_every 7 \
+--semantic_representation 'nn_embedding'  \
+--loss_weight_semantic 1.0 \
+--scheduler 'StepLR' \
+> rico_hier_AE_SemWt1_nnemb_nonGNN_LRev7_unmatchedbox.out &

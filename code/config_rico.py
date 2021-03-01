@@ -24,11 +24,16 @@ def add_data_args(parser):
     parser.add_argument('--extract_hier', action='store_true', default=False, help='whether to extract new hierarchy on top of rico')
     return parser
 
+def add_nascent_args(parser):
+    parser.add_argument('--use_pred_childnum', action='store_true', default=False, help='if True, only')
+    return parser
+
 
 def add_train_vae_args(parser):
     parser = add_base_args(parser)
     parser = add_model_args(parser)
     parser = add_data_args(parser)
+    parser = add_nascent_args(parser)
 
     # validation dataset
     parser.add_argument('--val_dataset', type=str, default='val.txt', help='file name for the list of object names for validation')
@@ -66,6 +71,7 @@ def add_train_vae_args(parser):
     parser.add_argument('--scheduler', type=str, default='StepLR',  choices =['StepLR','ReduceLROnPlateau'], help='type of the learning rate scheduler')
     parser.add_argument('--metric', type=str, default='total_loss', help='Select the best validated model based on this loss metric')
     parser.add_argument('--permutations', type=int, default=1, help='No permute when permutations == 1')    
+    
     # loss weights to train
     parser.add_argument('--loss_weight_geo', type=float, default=2.0, help='weight for the geo recon loss')
     parser.add_argument('--loss_weight_latent', type=float, default=20.0, help='weight for the latent recon loss')
@@ -108,10 +114,12 @@ def add_result_args(parser):
 def add_eval_args(parser):
     parser = add_result_args(parser)
     parser = add_data_args(parser)
-    parser.add_argument('--is_leaf_thres', type=float, default=0.5, help ='threshold on sigmoid(logit) for deciding is_leaf')
+    parser = add_nascent_args(parser)
+    parser.add_argument('--is_leaf_thres', type=float, default=0.4, help ='threshold on sigmoid(logit) for deciding is_leaf')
     parser.add_argument('--is_exists_thres', type=float, default=0.5, help ='threshold on sigmoid(exists) for deciding if child node exists')
     parser.add_argument('--split', type=str, default='val', help ='split set to perform the reconstruction evaluation')
     parser.add_argument('--test_dataset', type=str, default='test.txt', help='file name for the list of object names for testing')
+    parser.add_argument('--use_sem2cids_prior', action='store_true', default=False, help='whether to use prior information about possible ui to children')
 
     return  parser
 

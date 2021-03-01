@@ -29,6 +29,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 import torch.utils.data as data
 from PIL import Image
+import pickle
 
 
 from moka import *
@@ -339,36 +340,40 @@ class Hierarchy(object):
             cls.SEMANTICS = cls.rico_labels + cls.additional_labels
         else:
             raise(f'Unknown semantics type: {semantics}')
-        
+   
         cls.SEMANTIC2ID = {sem: i for i, sem in enumerate(cls.SEMANTICS)}
         cls.SEM2ID = cls.SEMANTIC2ID
         cls.NUM_SEMANTICS = len(cls.SEMANTICS)
-        cls.ID2SEM = {value:key for key, value in Hierarchy.SEM2ID.items()}
+        cls.ID2SEM = {value:key for key, value in cls.SEM2ID.items()}
        
         # Need to work on this
+        cls.SEM2CHILDREN = pickle.load(open('scripts/uinames2child.pkl', 'rb'))
+        cls.SEM2CHILDREN['[ROOT]'] = cls.SEMANTICS # NEed to revise this with some prior knowledge and stats
+
         cls.SEM2CIDS = dict()
-        cls.SEM2CIDS['[ROOT]'] = list(range(len(cls.SEMANTICS)))  # NEed to revise this with some prior knowledge and stats
+        cls.SEM2CIDS = {sem: [cls.SEM2ID[child] for child in children] for sem, children in cls.SEM2CHILDREN.items()}
 
-        for sem, children in cls.SEM2CHILDREN_PATTERN.items():
-            for k in cls.SEMANTICS:
-                if not fnmatch(k, sem): continue
-                cls.SEM2CIDS[k] = []
+        # for sem, children in cls.SEM2CHILDREN_PATTERN.items():
+        #     for k in cls.SEMANTICS:
+        #         if not fnmatch(k, sem): continue
+        #         cls.SEM2CIDS[k] = []
 
-                for c in children.split(' | '):
-                    cls.SEM2CIDS[k] += [cls.SEMANTIC2ID[_] for _ in cls.SEMANTICS if fnmatch(_, c)]
+        #         for c in children.split(' | '):
+        #             cls.SEM2CIDS[k] += [cls.SEMANTIC2ID[_] for _ in cls.SEMANTICS if fnmatch(_, c)]
 
-        for sem in cls.SEMANTICS:
-            if sem not in cls.SEM2CIDS:
-                cls.SEM2CIDS[sem] = []
+        # for sem in cls.SEMANTICS:
+        #     if sem not in cls.SEM2CIDS:
+        #         cls.SEM2CIDS[sem] = []
 
-        cls.SEM2CHILDREN = {sem: [cls.SEMANTICS[ci] for ci in cids] for sem, cids in cls.SEM2CIDS.items()}
+        # cls.SEM2CHILDREN = {sem: [cls.SEMANTICS[ci] for ci in cids] for sem, cids in cls.SEM2CIDS.items()}
         
-        #Get the name of non leaf UI components
+        # Get the name of non leaf UI components
         cls.non_leaf_sem_names = ['Toolbar', 'Drawer', 'Bottom Navigation' , \
-                                  'Modal', 'Button Bar', 'Date Picker', '[Merged-vca]',  \
+                                   'Modal', 'Button Bar', 'Date Picker', '[Merged-vca]',  \
                                   'Multi-Tab',   '[Merged-hca]' , 'List Item' ]
         
-    
+        # cls.non_leaf_sem_names = [sem for sem in cls.SEM2CIDS.keys() if cls.SEM2CIDS[sem] != []]
+
 
     def to(self, device):
         self.root = self.root.to(device)
@@ -1099,17 +1104,24 @@ class Node(Dict):
                 
                 #ToDo: f1 and f2 normalzied by W and H insteas by sacle (area)?
                 try:
-                     f1 = offsetx / math.sqrt(scale1) 
-                except ValueError:
-                    print (offsetx, scale1)
+                    f1 = offsetx / math.sqrt(scale1) 
+                except ValueError: 
+                    f1 = 0     
+                #except ValueError:
+                    #
                 
-                f1 = offsetx / math.sqrt(scale1)   # 
-                f2 = offsety / math.sqrt(scale1)      
+                # f1 = offsetx / math.sqrt(scale1)   # 
                 try:
-                     f3 = math.sqrt(scale2 / scale1)  
+                    f2 = offsety / math.sqrt(scale1)
                 except ValueError:
-                    print (scale2, scale1)
-                    print(box1, box2)
+                    f2 = 0
+
+                      
+                try:
+                    f3 = math.sqrt(scale2 / scale1)  
+                except:
+                    f3=1
+
                       
                 f4 = areaI / areaU
                 f5 = aspect1
@@ -1255,11 +1267,11 @@ class Rico(object):
     def get_semantic_image_path(self, uxid):
         return f'{self.RICO_ROOT}/semantic_annotations/{uxid}.png'
     
-    def plot_semantic_ui(self, uxid):
-         sui = self.get_semantic_image_path(uxid)
-         sui = Image.open(sui).convert('RGB')
-         fig,ax = plt.figure()
-         return ax.imshow(sui)
+    #def plot_semantic_ui(self, uxid):
+    #     sui = self.get_semantic_image_path(uxid)
+    #     sui = Image.open(sui).convert('RGB')
+    #     fig,ax = plt.figure()
+    #     return ax.imshow(sui)
         
          
          

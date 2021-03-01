@@ -12,3 +12,5 @@ python ./pretrain_part_pc.py \
   --lr_decay_by 0.9 \
   --use_local_frame \
   --loss_weight_kldiv 0.01
+
+
